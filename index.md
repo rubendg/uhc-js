@@ -42,20 +42,20 @@ risky but new features will be found here first.
 
 Make sure you have the dependencies, also make sure you have GHC installed:
 
-``` bash
+{% highlight bash %}
 cabal install uulib uuagc
-```
+{% endhighlight %}
 
 Now build the UHC:
 
-``` bash
+{% highlight bash linenos %}
 $> cd somewhere
 $> svn co https://subversion.cs.uu.nl/repos/project.UHC.pub/branches/js/EHC ehc
 $> cd ehc
 $> autoconf
 $> ./configure
 $> make -j8 101/ehc && make -j8 101/ehclib EHC_VARIANT_TARGET=js
-```
+{% endhighlight %}
 
 Optionally perform a `make install`.
 

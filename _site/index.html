@@ -5,6 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
   <title>The Utrecht Haskell Compiler JavaScript Backend Page</title>
   <link rel="stylesheet" type="text/css" href="style.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="syntax.css" media="all" />
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-28927322-1']);
@@ -48,22 +49,18 @@
 <p>Checkout the latest version of the JavaScript branch of UHC. This is somewhat risky but new features will be found here first.</p>
 
 <p>Make sure you have the dependencies, also make sure you have GHC installed:</p>
-
-<p><code>bash
-cabal install uulib uuagc
-</code></p>
-
+<div class='highlight'><pre><code class='bash'>cabal install uulib uuagc
+</code></pre>
+</div>
 <p>Now build the UHC:</p>
-
-<p><code>bash
-$&gt; cd somewhere
-$&gt; svn co https://subversion.cs.uu.nl/repos/project.UHC.pub/branches/js/EHC ehc
-$&gt; cd ehc
-$&gt; autoconf
-$&gt; ./configure
-$&gt; make -j8 101/ehc &amp;&amp; make -j8 101/ehclib EHC_VARIANT_TARGET=js
-</code></p>
-
+<div class='highlight'><pre><code class='bash'><span class='lineno'>1</span> <span class='nv'>$&gt;</span> <span class='nb'>cd </span>somewhere
+<span class='lineno'>2</span> <span class='nv'>$&gt;</span> svn co https://subversion.cs.uu.nl/repos/project.UHC.pub/branches/js/EHC ehc
+<span class='lineno'>3</span> <span class='nv'>$&gt;</span> <span class='nb'>cd </span>ehc
+<span class='lineno'>4</span> <span class='nv'>$&gt;</span> autoconf
+<span class='lineno'>5</span> <span class='nv'>$&gt;</span> ./configure
+<span class='lineno'>6</span> <span class='nv'>$&gt;</span> make -j8 101/ehc <span class='o'>&amp;&amp;</span> make -j8 101/ehclib <span class='nv'>EHC_VARIANT_TARGET</span><span class='o'>=</span>js
+</code></pre>
+</div>
 <p>Optionally perform a <code>make install</code>.</p>
 
 <h2 id='resources'>Resources</h2>
