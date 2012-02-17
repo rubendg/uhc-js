@@ -34,6 +34,31 @@ code](https://github.com/UU-ComputerScience/JCU). For installation instructions
 please refer to the section "Locations and Setup" in "Getting Rid of JavaScript
 with Haskell".
 
+Installation instructions
+-------------------------
+
+Checkout the latest version of the JavaScript branch of UHC. This is somewhat 
+risky but new features will be found here first.
+
+Make sure you have the dependencies, also make sure you have GHC installed:
+
+``` bash
+cabal install uulib uuagc
+```
+
+Now build the UHC:
+
+``` bash
+$> cd somewhere
+$> svn co https://subversion.cs.uu.nl/repos/project.UHC.pub/branches/js/EHC ehc
+$> cd ehc
+$> autoconf
+$> ./configure
+$> make -j8 101/ehc && make -j8 101/ehclib EHC_VARIANT_TARGET=js
+```
+
+Optionally perform a `make install`.
+
 Resources
 ---------
 
