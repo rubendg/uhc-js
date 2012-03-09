@@ -168,3 +168,14 @@ p.note {
   background-color: #FCF0AD;
   padding: 8px;
 }
+
+/** Syntax overrides **/
+.highlight, .gist-highlight {
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+}
+pre {
+  line-height: 1.45em;
+  font-size: 13px;
+  color: #93A1A1;
+}
