@@ -59,6 +59,20 @@ $> make -j8 101/ehc && make -j8 101/ehclib EHC_VARIANT_TARGET=js
 
 Optionally perform a `make install`.
 
+### Installation script for JCU-HS ###
+An installation script for installing the JCU app together with its dependencies
+is available from [this gist][jcu-install-script]. Currently the script does
+**not** build nor install UHC for you.
+
+If you trust us you may run the following command directly from your shell. It
+will run the installer in your current working directory:
+
+{% highlight ruby %}
+ruby <(curl -s https://raw.github.com/gist/1902090/e2a0508cea4bd4bc3abeed87b054e32e1c99931e/install.rb)
+{% endhighlight %}
+
+Follow the on screen instructions when running the installer.
+
 Resources
 ---------
 
@@ -69,3 +83,5 @@ Resources
 * [The UHC Wiki](http://www.cs.uu.nl/wiki/UHC) and [Getting started](http://www.cs.uu.nl/wiki/bin/view/UHC/GettingStarted). 
   Be sure to pick the [js](https://subversion.cs.uu.nl/repos/project.UHC.pub/branches/js/) branch on the repo for latest developments.
 * [UHC JS Backend Quick Start](http://chrisdone.com/posts/2012-01-06-uhc-javascript.html) - Chris Done
+
+[jcu-install-script]: https://gist.github.com/1902090 "A Ruby Script to install JCU and dependencies."
