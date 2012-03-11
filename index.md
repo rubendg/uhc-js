@@ -2,8 +2,8 @@
 layout: default
 title: "The Utrecht Haskell Compiler JavaScript Backend Page"
 ---
-{:toc}
-<p class="note">
+
+<p class="note block">
   This page is currently under construction. In the mean time please
   consider looking at the reports <a
   href="http://www.norm2782.com/improving-uhc-js-report.pdf">Improving the
@@ -15,6 +15,7 @@ title: "The Utrecht Haskell Compiler JavaScript Backend Page"
   The JavaScript Problem</a>.
 </p>
 
+{% capture introduction %}
 A short introduction: how to get started
 ----------------------------------------
 Please report bugs in the UHC-JS backend or in the UHC-JS library in the [GitHub
@@ -33,6 +34,31 @@ Go to the [instance](http://jcu.chrisdone.com/login). And log in with username
 code](https://github.com/UU-ComputerScience/JCU). For installation instructions
 please refer to the section "Locations and Setup" in "Getting Rid of JavaScript
 with Haskell".
+{% endcapture %}
+
+{% capture resources %}
+Resources
+---------
+
+* [Improving the UHC JavaScript Backend](http://www.norm2782.com/improving-uhc-js-report.pdf) - Jurriën Stutterheim
+* [Getting Rid of JavaScript with Haskell](http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell) - Alessandro Vermeulen
+* [The JavaScript Problem (Haskell Wiki)](http://www.haskell.org/haskellwiki/The_JavaScript_Problem#UHC)
+* [The UHC Blog](http://utrechthaskellcompiler.wordpress.com/)
+* [The UHC Wiki](http://www.cs.uu.nl/wiki/UHC) and [Getting started](http://www.cs.uu.nl/wiki/bin/view/UHC/GettingStarted). 
+  Be sure to pick the [js](https://subversion.cs.uu.nl/repos/project.UHC.pub/branches/js/) branch on the repo for latest developments.
+* [UHC JS Backend Quick Start](http://chrisdone.com/posts/2012-01-06-uhc-javascript.html) - Chris Done
+* [Client-Side Haskell code](https://github.com/spockz/JCU/tree/master/resources/static/hjs) - Alessandro Vermeulen
+{% endcapture %}
+
+<div class="two-column">
+  <div class="column">
+    {{ introduction | markdownify }}
+  </div>
+  <div class="column block">
+    {{ resources | markdownify }}
+  </div>  
+</div>
+<div style="clear:both"></div>
 
 Installation instructions
 -------------------------
@@ -73,15 +99,5 @@ ruby <(curl -s https://raw.github.com/gist/1902090/e2a0508cea4bd4bc3abeed87b054e
 
 Follow the on screen instructions when running the installer.
 
-Resources
----------
-
-* [Improving the UHC JavaScript Backend](http://www.norm2782.com/improving-uhc-js-report.pdf) - Jurriën Stutterheim
-* [Getting Rid of JavaScript with Haskell](http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell) - Alessandro Vermeulen
-* [The JavaScript Problem (Haskell Wiki)](http://www.haskell.org/haskellwiki/The_JavaScript_Problem#UHC)
-* [The UHC Blog](http://utrechthaskellcompiler.wordpress.com/)
-* [The UHC Wiki](http://www.cs.uu.nl/wiki/UHC) and [Getting started](http://www.cs.uu.nl/wiki/bin/view/UHC/GettingStarted). 
-  Be sure to pick the [js](https://subversion.cs.uu.nl/repos/project.UHC.pub/branches/js/) branch on the repo for latest developments.
-* [UHC JS Backend Quick Start](http://chrisdone.com/posts/2012-01-06-uhc-javascript.html) - Chris Done
-
+[jcu-spockz-fork]: https://github.com/spockz/JCU
 [jcu-install-script]: https://gist.github.com/1902090 "A Ruby Script to install JCU and dependencies."
