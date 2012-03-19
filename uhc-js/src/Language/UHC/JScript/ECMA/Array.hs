@@ -11,6 +11,9 @@ type JSArray x = BoxArray x
 
 instance JS (JSArray a)
 
+instance ToJS [a] (JSArray a) where
+  toJS = listToStrictJSArray
+
 foreign import js "%1.length"
   lengthJSArray :: JSArray x -> Int
 
@@ -185,10 +188,18 @@ foreign import prim
 foreign import prim "primWriteArray"
   primWriteArray :: BoxArray x -> Int -> x -> ()
 
+foreign import prim "primStrictWriteArray"
+  primStrictWriteArray :: BoxArray x -> Int -> x -> ()
+
 listToJSArray :: [a] -> JSArray a
 listToJSArray [] = error "Cannot convert empty list"
 listToJSArray xs = snd $ foldr f (0, primNewArray (B.length xs) (head xs)) xs
   where f x (n, arr) = (n+1, seq (primWriteArray arr n x) arr)
+
+listToStrictJSArray :: [a] -> JSArray a
+listToStrictJSArray [] = error "Cannot convert empty list"
+listToStrictJSArray xs = snd $ foldr f (0, primNewArray (B.length xs) (head xs)) xs
+  where f x (n, arr) = (n+1, seq (primStrictWriteArray arr n x) arr)
 
 indexJSArray :: JSArray x -> Int -> x
 indexJSArray = indexArray
