@@ -1,2 +1,2 @@
 #!/bin/bash
-$UHC -tjscript Main.hs
+cd src && uhc -tjs Main.hs
