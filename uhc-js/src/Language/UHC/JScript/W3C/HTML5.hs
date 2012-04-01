@@ -53,6 +53,7 @@ module Language.UHC.JScript.W3C.HTML5
   , nodeListLength
 
   , pathName
+  , encodeURIComponent
   )
   where
 
@@ -217,3 +218,9 @@ foreign import js "window.location.pathname"
 
 pathName :: IO String
 pathName = fmap fromJS _pathName
+
+encodeURIComponent :: String -> String
+encodeURIComponent = (fromJS :: JSString -> String) . _encodeURIComponent . (toJS :: String -> JSString)
+
+foreign import js "encodeURIComponent(%1)"
+  _encodeURIComponent :: JSString -> JSString
