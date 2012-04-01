@@ -54,6 +54,7 @@ module Language.UHC.JScript.W3C.HTML5
 
   , pathName
   , encodeURIComponent
+  , _encodeURIComponent
   )
   where
 
