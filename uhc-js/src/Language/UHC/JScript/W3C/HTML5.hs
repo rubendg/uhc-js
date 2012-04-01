@@ -33,7 +33,7 @@ module Language.UHC.JScript.W3C.HTML5
   , elementAttributes
   , elementSetAttribute
   , elementAppendChild
-  
+
   , Attr
   , attrValue
 
@@ -51,6 +51,8 @@ module Language.UHC.JScript.W3C.HTML5
   , NodeList
   , nodeListItem
   , nodeListLength
+
+  , pathName
   )
   where
 
@@ -209,3 +211,9 @@ type Attr    = JSPtr AttrPtr
 
 foreign import js "%1.value"
   attrValue :: Attr -> JSString
+
+foreign import js "window.location.pathname"
+  _pathName :: IO JSString
+
+pathName :: IO String
+pathName = fmap fromJS _pathName
