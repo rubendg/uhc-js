@@ -117,16 +117,16 @@ foreign import js "%1.hide()"
 addClass :: JQuery -> String -> IO ()
 addClass j s = _addClass j (toJS s)
 
+ -- Or return JQuery for chaining??? Does chaining even make sense?
+foreign import js "%1.addClass(%2)"
+  _addClass :: JQuery -> JSString -> IO ()
+
 wrapInner :: JQuery -> String -> IO ()
 wrapInner j = _wrapInner j . toJS
 
 foreign import js "%1.wrapInner(%2)"
   _wrapInner :: JQuery -> JSString -> IO ()
 
- -- Or return JQuery for chaining??? Does chaining even make sense?
-foreign import js "%1.addClass(%2)"
-  _addClass :: JQuery -> JSString -> IO ()
-  
 foreign import js "%1.remove()"
   remove :: JQuery -> IO ()
 
@@ -138,17 +138,21 @@ toggleClassString sel c = jQuery sel >>= flip toggleClass c
 
 foreign import js "%1.toggleClass(%2)"
   _toggleClass :: JQuery -> JSString -> IO ()
-  
+
 -- | One or more space-separated classes to be removed from the class attribute
 --   of each matched element.
-removeClass :: JQuery -> String -> IO ()
-removeClass jq = _removeClass jq . toJS
+
+removeClass' :: JQuery -> String -> IO ()
+removeClass' jq = _removeClass' jq . toJS
 
 removeClassString :: String -> String -> IO ()
-removeClassString sel c = jQuery sel >>= flip removeClass c
+removeClassString sel c = jQuery sel >>= flip removeClass' c
+
+foreign import js "%1.removeClass()"
+  removeClass :: JQuery -> IO ()
 
 foreign import js "%1.removeClass(%2)"
-  _removeClass :: JQuery -> JSString -> IO ()
+  _removeClass' :: JQuery -> JSString -> IO ()
 
 
 -------------------------------------------------------------------------------
