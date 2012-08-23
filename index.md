@@ -76,11 +76,13 @@ Now build the UHC:
 
 {% highlight bash linenos %}
 $> cd somewhere
-$> svn co https://subversion.cs.uu.nl/repos/project.UHC.pub/branches/js/EHC ehc
-$> cd ehc
+$> git clone git://github.com/UU-ComputerScience/uhc.git
+$> cd uhc
+$> git checkout js
+$> cd EHC
 $> autoconf
 $> ./configure
-$> make -j8 101/ehc && make -j8 101/ehclib EHC_VARIANT_TARGET=js
+$> make uhc && make 101/ehclib EHC_VARIANT_TARGET=js
 {% endhighlight %}
 
 Optionally perform a `make install`.
