@@ -1,12 +1,12 @@
 module Main where
 
-import  Language.UHC.JScript.Assorted
-import  Language.UHC.JScript.Backbone
-import  Language.UHC.JScript.ECMA
-import  Language.UHC.JScript.JQuery.JQuery
-import  Language.UHC.JScript.JSON2.JSON2
-import  Language.UHC.JScript.Types
-import  Language.UHC.JScript.W3C.HTML5
+import  Language.UHC.JS.Assorted
+import  Language.UHC.JS.Backbone
+import  Language.UHC.JS.ECMA
+import  Language.UHC.JS.JQuery.JQuery
+import  Language.UHC.JS.JSON2.JSON2
+import  Language.UHC.JS.Types
+import  Language.UHC.JS.W3C.HTML5
 
 main :: IO ()
 main = undefined

@@ -1,7 +1,7 @@
-import Language.UHC.JScript.ECMA.String
-import Language.UHC.JScript.Assorted
-import Language.UHC.JScript.Primitives
-import Language.UHC.JScript.JQuery.JQuery
+import Language.UHC.JS.ECMA.String
+import Language.UHC.JS.Assorted
+import Language.UHC.JS.Primitives
+import Language.UHC.JS.JQuery.JQuery
 import UHC.Ptr
 
 
