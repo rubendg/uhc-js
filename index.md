@@ -3,8 +3,6 @@ layout: default
 title: "The Utrecht Haskell Compiler JavaScript Backend Page"
 ---
 
-{:toc}
-
 <div class="alert">
   <p>
     This page is currently under construction. In the mean time please
@@ -19,7 +17,7 @@ title: "The Utrecht Haskell Compiler JavaScript Backend Page"
   </p>
 </div>
 
-{% capture introduction %}
+
 A short introduction: how to get started
 ----------------------------------------
 Please report bugs in the UHC-JS backend or in the UHC-JS library in the [GitHub
@@ -27,6 +25,7 @@ Issue Tracker](https://github.com/UU-ComputerScience/uhc-js/issues). Please note
 that UHC related issues will eventually get their own issue tracker once the UHC
 has been moved to GitHub. Also consider joining
 [#uhcjs](irc://irc.freenode.net/uhcjs) on FreeNode.
+
 
 Demo
 ----
@@ -38,9 +37,8 @@ Go to the [instance](http://jcu.chrisdone.com/login). And log in with username
 code](https://github.com/UU-ComputerScience/JCU). For installation instructions
 please refer to the section "Locations and Setup" in "Getting Rid of JavaScript
 with Haskell".
-{% endcapture %}
 
-{% capture resources %}
+
 Resources
 ---------
 
@@ -52,17 +50,7 @@ Resources
   Be sure to pick the [js](https://subversion.cs.uu.nl/repos/project.UHC.pub/branches/js/) branch on the repo for latest developments.
 * [UHC JS Backend Quick Start](http://chrisdone.com/posts/2012-01-06-uhc-javascript.html) - Chris Done
 * [Client-Side Haskell code](https://github.com/spockz/JCU/tree/master/resources/static/hjs) - Alessandro Vermeulen
-{% endcapture %}
 
-<div class="two-column">
-  <div class="column">
-    {{ introduction | markdownify }}
-  </div>
-  <div class="column block">
-    {{ resources | markdownify }}
-  </div>  
-</div>
-<div style="clear:both"></div>
 
 Installation instructions
 -------------------------

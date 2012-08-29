@@ -5,7 +5,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
   <title>{{ page.title }}</title>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="css/application.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="css/application.css" media="all" />
   <!-- <link rel="stylesheet" type="text/css" href="syntax.css" media="all" /> -->
   <!-- <link rel="stylesheet" type="text/css" href="style.css" media="all" /> -->
 </head>
@@ -15,19 +16,27 @@
   <div class="container">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
         <a class="brand" href="#">UHC-JS</a>
-        <ul class="nav">
-          <li class="active"><a href="#a_short_introduction_how_to_get_started">Introduction</a></li>
-          <li><a href="#demo">Demo</a></li>
-          <li><a href="#resources">Resources</a></li>
-          <li><a href="#installation_instructions">Installation instructions</a></li>
-        </ul>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><a href="#a_short_introduction_how_to_get_started">Introduction</a></li>
+            <li><a href="#demo">Demo</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#installation_instructions">Installation instructions</a></li>
+          </ul>
+        </div>
       </div>
     </div>
     
-    <div id="header">
-      <h1>The Utrecht Haskell Compiler JavaScript Backend Page</h1>
-    </div>
+    <div id="header"></div>
+    <h1>The Utrecht Haskell Compiler JavaScript Backend Page</h1>
     <div id="body">
       {{ content }}
     </div>

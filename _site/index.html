@@ -5,7 +5,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
   <title>The Utrecht Haskell Compiler JavaScript Backend Page</title>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="css/application.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="css/application.css" media="all" />
   <!-- <link rel="stylesheet" type="text/css" href="syntax.css" media="all" /> -->
   <!-- <link rel="stylesheet" type="text/css" href="style.css" media="all" /> -->
 </head>
@@ -15,19 +16,27 @@
   <div class="container">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
         <a class="brand" href="#">UHC-JS</a>
-        <ul class="nav">
-          <li class="active"><a href="#a_short_introduction_how_to_get_started">Introduction</a></li>
-          <li><a href="#demo">Demo</a></li>
-          <li><a href="#resources">Resources</a></li>
-          <li><a href="#installation_instructions">Installation instructions</a></li>
-        </ul>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><a href="#a_short_introduction_how_to_get_started">Introduction</a></li>
+            <li><a href="#demo">Demo</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#installation_instructions">Installation instructions</a></li>
+          </ul>
+        </div>
       </div>
     </div>
     
-    <div id="header">
-      <h1>The Utrecht Haskell Compiler JavaScript Backend Page</h1>
-    </div>
+    <div id="header"></div>
+    <h1>The Utrecht Haskell Compiler JavaScript Backend Page</h1>
     <div id="body">
       <div class='alert'>
   <p>
@@ -38,9 +47,8 @@
     <a href='http://www.haskell.org/haskellwiki/The_JavaScript_Problem#UHC'>Haskell:
     The JavaScript Problem</a>.
   </p>
-</div><div class='two-column'>
-  <div class='column'>
-    <h2 id='a_short_introduction_how_to_get_started'>A short introduction: how to get started</h2>
+</div>
+<h2 id='a_short_introduction_how_to_get_started'>A short introduction: how to get started</h2>
 
 <p>Please report bugs in the UHC-JS backend or in the UHC-JS library in the <a href='https://github.com/UU-ComputerScience/uhc-js/issues'>GitHub Issue Tracker</a>. Please note that UHC related issues will eventually get their own issue tracker once the UHC has been moved to GitHub. Also consider joining <a href='irc://irc.freenode.net/uhcjs'>#uhcjs</a> on FreeNode.</p>
 
@@ -49,9 +57,8 @@
 <p>The JCU app discussed in &#8220;Getting Rid of JavaScript with Haskell&#8221; has been put online by <a href='http://chrisdone.com/'>Chris Done</a>.</p>
 
 <p>Go to the <a href='http://jcu.chrisdone.com/login'>instance</a>. And log in with username &#8220;uhcjsdemo@example.com&#8221; and password &#8220;123456&#8221;. And check out the <a href='https://github.com/UU-ComputerScience/JCU'>source code</a>. For installation instructions please refer to the section &#8220;Locations and Setup&#8221; in &#8220;Getting Rid of JavaScript with Haskell&#8221;.</p>
-  </div>
-  <div class='column block'>
-    <h2 id='resources'>Resources</h2>
+
+<h2 id='resources'>Resources</h2>
 
 <ul>
 <li><a href='http://www.norm2782.com/improving-uhc-js-report.pdf'>Improving the UHC JavaScript Backend</a> - Jurriën Stutterheim</li>
@@ -68,8 +75,7 @@
 
 <li><a href='https://github.com/spockz/JCU/tree/master/resources/static/hjs'>Client-Side Haskell code</a> - Alessandro Vermeulen</li>
 </ul>
-  </div>  
-</div><div style='clear:both' />
+
 <h2 id='installation_instructions'>Installation instructions</h2>
 
 <p>Checkout the latest version of the JavaScript branch of UHC. This is somewhat risky but new features will be found here first.</p>
