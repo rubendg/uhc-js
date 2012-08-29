@@ -4,37 +4,41 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
   <title>The Utrecht Haskell Compiler JavaScript Backend Page</title>
-  <link rel="stylesheet" type="text/css" href="syntax.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="style.css" media="all" />
-
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-28927322-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/application.css" media="all" />
+  <!-- <link rel="stylesheet" type="text/css" href="syntax.css" media="all" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="style.css" media="all" /> -->
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar">
 
-  <div id="container">
+  <div class="container">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <a class="brand" href="#">UHC-JS</a>
+        <ul class="nav">
+          <li class="active"><a href="#a_short_introduction_how_to_get_started">Introduction</a></li>
+          <li><a href="#demo">Demo</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#installation_instructions">Installation instructions</a></li>
+        </ul>
+      </div>
+    </div>
+    
     <div id="header">
       <h1>The Utrecht Haskell Compiler JavaScript Backend Page</h1>
     </div>
     <div id="body">
-      <p class='note block'>
-  This page is currently under construction. In the mean time please
-  consider looking at the reports <a href='http://www.norm2782.com/improving-uhc-js-report.pdf'>Improving the
-  UHC JavaScript Backend</a> (Jurriën Stutterheim) and <a href='http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell/'>Getting
-  Rid of JavaScript with Haskell</a> (Alessandro Vermeulen). Also take a look at
-  <a href='http://www.haskell.org/haskellwiki/The_JavaScript_Problem#UHC'>Haskell:
-  The JavaScript Problem</a>.
-</p><div class='two-column'>
+      <div class='alert'>
+  <p>
+    This page is currently under construction. In the mean time please
+    consider looking at the reports <a href='http://www.norm2782.com/improving-uhc-js-report.pdf'>Improving the
+    UHC JavaScript Backend</a> (Jurriën Stutterheim) and <a href='http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell/'>Getting
+    Rid of JavaScript with Haskell</a> (Alessandro Vermeulen). Also take a look at
+    <a href='http://www.haskell.org/haskellwiki/The_JavaScript_Problem#UHC'>Haskell:
+    The JavaScript Problem</a>.
+  </p>
+</div><div class='two-column'>
   <div class='column'>
     <h2 id='a_short_introduction_how_to_get_started'>A short introduction: how to get started</h2>
 
@@ -76,11 +80,13 @@
 </div>
 <p>Now build the UHC:</p>
 <div class='highlight'><pre><code class='bash'><span class='lineno'>1</span> <span class='nv'>$&gt;</span> <span class='nb'>cd </span>somewhere
-<span class='lineno'>2</span> <span class='nv'>$&gt;</span> svn co https://subversion.cs.uu.nl/repos/project.UHC.pub/branches/js/EHC ehc
-<span class='lineno'>3</span> <span class='nv'>$&gt;</span> <span class='nb'>cd </span>ehc
-<span class='lineno'>4</span> <span class='nv'>$&gt;</span> autoconf
-<span class='lineno'>5</span> <span class='nv'>$&gt;</span> ./configure
-<span class='lineno'>6</span> <span class='nv'>$&gt;</span> make -j8 101/ehc <span class='o'>&amp;&amp;</span> make -j8 101/ehclib <span class='nv'>EHC_VARIANT_TARGET</span><span class='o'>=</span>js
+<span class='lineno'>2</span> <span class='nv'>$&gt;</span> git clone git://github.com/UU-ComputerScience/uhc.git
+<span class='lineno'>3</span> <span class='nv'>$&gt;</span> <span class='nb'>cd </span>uhc
+<span class='lineno'>4</span> <span class='nv'>$&gt;</span> git checkout js
+<span class='lineno'>5</span> <span class='nv'>$&gt;</span> <span class='nb'>cd </span>EHC
+<span class='lineno'>6</span> <span class='nv'>$&gt;</span> autoconf
+<span class='lineno'>7</span> <span class='nv'>$&gt;</span> ./configure
+<span class='lineno'>8</span> <span class='nv'>$&gt;</span> make uhc <span class='o'>&amp;&amp;</span> make 101/ehclib <span class='nv'>EHC_VARIANT_TARGET</span><span class='o'>=</span>js
 </code></pre>
 </div>
 <p>Optionally perform a <code>make install</code>.</p>
@@ -96,6 +102,19 @@
 <p>Follow the on screen instructions when running the installer.</p>
     </div>
   </div>
+  <script src="js/jquery-1.8.0.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28927322-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 
 </body>
 </html>

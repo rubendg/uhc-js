@@ -3,17 +3,21 @@ layout: default
 title: "The Utrecht Haskell Compiler JavaScript Backend Page"
 ---
 
-<p class="note block">
-  This page is currently under construction. In the mean time please
-  consider looking at the reports <a
-  href="http://www.norm2782.com/improving-uhc-js-report.pdf">Improving the
-  UHC JavaScript Backend</a> (Jurriën Stutterheim) and <a
-  href="http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell/">Getting
-  Rid of JavaScript with Haskell</a> (Alessandro Vermeulen). Also take a look at
-  <a
-  href="http://www.haskell.org/haskellwiki/The_JavaScript_Problem#UHC">Haskell:
-  The JavaScript Problem</a>.
-</p>
+{:toc}
+
+<div class="alert">
+  <p>
+    This page is currently under construction. In the mean time please
+    consider looking at the reports <a
+    href="http://www.norm2782.com/improving-uhc-js-report.pdf">Improving the
+    UHC JavaScript Backend</a> (Jurriën Stutterheim) and <a
+    href="http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell/">Getting
+    Rid of JavaScript with Haskell</a> (Alessandro Vermeulen). Also take a look at
+    <a
+    href="http://www.haskell.org/haskellwiki/The_JavaScript_Problem#UHC">Haskell:
+    The JavaScript Problem</a>.
+  </p>
+</div>
 
 {% capture introduction %}
 A short introduction: how to get started

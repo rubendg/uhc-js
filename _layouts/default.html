@@ -4,9 +4,36 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
   <title>{{ page.title }}</title>
-  <link rel="stylesheet" type="text/css" href="syntax.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="style.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/application.css" media="all" />
+  <!-- <link rel="stylesheet" type="text/css" href="syntax.css" media="all" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="style.css" media="all" /> -->
+</head>
 
+<body data-spy="scroll" data-target=".navbar">
+
+  <div class="container">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <a class="brand" href="#">UHC-JS</a>
+        <ul class="nav">
+          <li class="active"><a href="#a_short_introduction_how_to_get_started">Introduction</a></li>
+          <li><a href="#demo">Demo</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#installation_instructions">Installation instructions</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div id="header">
+      <h1>The Utrecht Haskell Compiler JavaScript Backend Page</h1>
+    </div>
+    <div id="body">
+      {{ content }}
+    </div>
+  </div>
+  <script src="js/jquery-1.8.0.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-28927322-1']);
@@ -18,18 +45,6 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
-</head>
-
-<body>
-
-  <div id="container">
-    <div id="header">
-      <h1>The Utrecht Haskell Compiler JavaScript Backend Page</h1>
-    </div>
-    <div id="body">
-      {{ content }}
-    </div>
-  </div>
 
 </body>
 </html>
