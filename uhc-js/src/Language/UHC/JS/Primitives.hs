@@ -10,7 +10,7 @@ type JSFunPtr a = FunPtr a
 instance JS (JSPtr a)
 instance JS (JSString)
 
-type AnonObj = JSPtr ()
+type AnonObj = forall a . JSPtr a
 
 foreign import prim "primMkAnonObj"
   mkAnonObj :: IO AnonObj
