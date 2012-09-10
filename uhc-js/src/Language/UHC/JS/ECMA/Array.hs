@@ -1,6 +1,6 @@
 module Language.UHC.JS.ECMA.Array where
 
-import Language.UHC.JS.ECMA.String
+import qualified Language.UHC.JS.ECMA.String as S
 import Language.UHC.JS.Types
 
 import UHC.Array
@@ -45,8 +45,8 @@ foreign import js "%1.concat(%*)"
 -- alternative imports. It'd be easiest for functions with a small number of
 -- optional arguments. Funs with more optional arguments still require some
 -- thought though.
-foreign import js "%1.join" join  :: JSArray x -> JSString
-foreign import js "%1.join(%*)" join' :: JSArray x -> JSString -> JSString
+foreign import js "%1.join" join  :: JSArray x -> S.JSString
+foreign import js "%1.join(%*)" join' :: JSArray x -> S.JSString -> S.JSString
 
 -- TODO: Do we want this to be in IO? We're mutating the array here...
 -- head/tail teruggeven in tupletje, in IO
