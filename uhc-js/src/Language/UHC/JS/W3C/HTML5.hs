@@ -151,6 +151,9 @@ type Element = JSPtr ElementPtr
 foreign import js "%1.innerHTML"
   elementInnerHTML :: Node -> JSString
 
+foreign import js "%1.value"
+  elementValue :: Node -> JSString
+
 foreign import js "%1.tagName"
   elementTagName :: Node -> JSString
 
