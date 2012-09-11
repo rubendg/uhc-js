@@ -26,6 +26,7 @@ module Language.UHC.JS.W3C.HTML5
   , Link
 
   , Element
+  , elementValue
   , elementInnerHTML
   , elementTagName
   , elementClientWidth
