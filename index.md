@@ -1,8 +1,9 @@
 ---
 layout: default
 title: "The Utrecht Haskell Compiler JavaScript Backend Page"
+permalink: /
 ---
-
+{% capture content %}
 <div class="alert">
   <p>
     This page is currently under construction. In the mean time please
@@ -95,3 +96,18 @@ Follow the on screen instructions when running the installer.
 
 [jcu-spockz-fork]: https://github.com/spockz/JCU
 [jcu-install-script]: https://gist.github.com/1902090 "A Ruby Script to install JCU and dependencies."
+{% endcapture %}
+
+<div class="container">
+  <div class="row">
+  <div class="span3 bs-docs-sidebar">
+    <ul class="nav nav-list bs-docs-sidenav" data-spy="affix"  data-offset-top="132">
+
+          <!-- <li><a href="#getting_started">Getting Started</a></li><li><a href="#communicating_with_javascript">Communicating with JavaScript</a></li><li class="active"><a href="#examples__practice">Examples / Practice</a></li> -->
+    </ul>
+  </div>
+  <div class="span9 content">
+    {{ content | markdownify }}
+  </div>
+  </div>
+</div>

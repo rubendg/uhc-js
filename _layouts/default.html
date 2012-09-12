@@ -27,10 +27,18 @@
         <a class="brand" href="#"><img src="images/uhc-logo.png" alt="" title=""/></a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li class="active"><a href="#a_short_introduction_how_to_get_started">Introduction</a></li>
-            <li><a href="#demo">Demo</a></li>
-            <li><a href="#resources">Resources</a></li>
-            <li><a href="#installation_instructions">Installation instructions</a></li>
+            
+            {% for link in site.navigation %}
+              {% assign current = nil %}
+              {% if page.url == link.url %}
+                {% assign current = 'active' %}
+              {% endif %}
+
+              <li class="{{ current }}">
+                <a href="{{ link.url }}">{{ link.text }}</a>
+              </li>
+            {% endfor %}
+            
           </ul>
         </div>
       </div>

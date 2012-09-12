@@ -5,6 +5,10 @@ title: "Documentation / User Guide"
 {% capture content %}
 ## Getting Started
 
+This page contains documentation specific to the JavaScript backend. To learn
+more of the UHC please look at the [extensive documentation][uhc-extensive-doc].
+
+
 ### Installation of UHC
 Clone the latest version of the JavaScript branch of UHC. This is somewhat 
 risky but new features will be found here first.
@@ -79,6 +83,7 @@ This is the list of currently active UHC-JS enabled projects:
 * JCU-App ([demo](http://jcu.chrisdone.com/login), [announce](http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell))
 
 [uhc-js]: https://github.com/UU-ComputerScience/uhc-js
+[uhc-extensive-doc]: http://www.cs.uu.nl/wiki/bin/view/Ehc/Documentation
 {% endcapture %}
 
 <div class="container">

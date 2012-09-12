@@ -1,2 +1,8 @@
 pygments: true
 auto: true
+
+navigation:
+- text: Home
+  url: /
+- text: Documentation
+  url: /documentation.html
