@@ -3,15 +3,16 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
-  <title>The Utrecht Haskell Compiler JavaScript Backend Page</title>
+  <title>The Utrecht Haskell Compiler JavaScript Backend Page - Utrecht Haskell Compiler: JavaScript back end</title>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="all" />
   <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="css/prettify.css" media="all" />
   <link rel="stylesheet" type="text/css" href="css/application.css" media="all" />
   <!-- <link rel="stylesheet" type="text/css" href="syntax.css" media="all" /> -->
   <!-- <link rel="stylesheet" type="text/css" href="style.css" media="all" /> -->
 </head>
 
-<body data-spy="scroll" data-target=".navbar">
+<body>
 
   <div class="container">
     <div class="navbar navbar-fixed-top">
@@ -23,7 +24,7 @@
           <span class="icon-bar"></span>
         </a>
         
-        <a class="brand" href="#">UHC-JS</a>
+        <a class="brand" href="#"><img src="images/uhc-logo.png" alt="" title=""/></a>
         <div class="nav-collapse">
           <ul class="nav">
             <li class="active"><a href="#a_short_introduction_how_to_get_started">Introduction</a></li>
@@ -35,8 +36,10 @@
       </div>
     </div>
     
-    <div id="header"></div>
-    <h1>The Utrecht Haskell Compiler JavaScript Backend Page</h1>
+    <div id="header">
+      <h1>The Utrecht Haskell Compiler JavaScript Backend Page</h1>
+    </div>
+
     <div id="body">
       <div class='alert'>
   <p>
@@ -69,7 +72,7 @@
 
 <li><a href='http://utrechthaskellcompiler.wordpress.com/'>The UHC Blog</a></li>
 
-<li><a href='http://www.cs.uu.nl/wiki/UHC'>The UHC Wiki</a> and <a href='http://www.cs.uu.nl/wiki/bin/view/UHC/GettingStarted'>Getting started</a>. Be sure to pick the <a href='https://subversion.cs.uu.nl/repos/project.UHC.pub/branches/js/'>js</a> branch on the repo for latest developments.</li>
+<li><a href='http://www.cs.uu.nl/wiki/UHC'>The UHC Wiki</a> and <a href='http://www.cs.uu.nl/wiki/bin/view/UHC/GettingStarted'>Getting started</a>. Be sure to pick the <a href='https://github.com/UU-ComputerScience/uhc/tree/js'>js</a> branch on the repo for latest developments.</li>
 
 <li><a href='http://chrisdone.com/posts/2012-01-06-uhc-javascript.html'>UHC JS Backend Quick Start</a> - Chris Done</li>
 
@@ -78,7 +81,7 @@
 
 <h2 id='installation_instructions'>Installation instructions</h2>
 
-<p>Checkout the latest version of the JavaScript branch of UHC. This is somewhat risky but new features will be found here first.</p>
+<p>Clone the latest version of the JavaScript branch of UHC. This is somewhat risky but new features will be found here first.</p>
 
 <p>Make sure you have the dependencies, also make sure you have GHC installed:</p>
 <div class='highlight'><pre><code class='bash'>cabal install uulib uuagc
@@ -92,7 +95,7 @@
 <span class='lineno'>5</span> <span class='nv'>$&gt;</span> <span class='nb'>cd </span>EHC
 <span class='lineno'>6</span> <span class='nv'>$&gt;</span> autoconf
 <span class='lineno'>7</span> <span class='nv'>$&gt;</span> ./configure
-<span class='lineno'>8</span> <span class='nv'>$&gt;</span> make uhc <span class='o'>&amp;&amp;</span> make 101/ehclib <span class='nv'>EHC_VARIANT_TARGET</span><span class='o'>=</span>js
+<span class='lineno'>8</span> <span class='nv'>$&gt;</span> make uhc
 </code></pre>
 </div>
 <p>Optionally perform a <code>make install</code>.</p>
@@ -110,6 +113,9 @@
   </div>
   <script src="js/jquery-1.8.0.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  
+  <script type="text/javascript" src="js/prettify.js"></script>
+  <script type="text/javascript" src="js/lang-hs.js"></script>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-28927322-1']);
@@ -120,6 +126,20 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
+  </script>
+  <script type="text/javascript">
+  $(function() {
+    window.prettyPrint && prettyPrint();
+    
+    var $sidenav = $('.bs-docs-sidenav');
+    $('.content h2').each(function(i, header) {
+      var $header = $(header);
+    
+      var li = $('<li><a href="#' + $header.attr('id') + '">' + $header.text() + '</a></li>')
+      $sidenav.append(li);
+    });
+    $('body').scrollspy('refresh');
+  })
   </script>
 
 </body>
