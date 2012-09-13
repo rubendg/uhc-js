@@ -55,31 +55,15 @@
       <div class='container'>
   <div class='row'>
   <div class='span3 bs-docs-sidebar'>
-    <ul class='nav nav-list bs-docs-sidenav' data-offset-top='132' data-spy='affix'>
+    <ul class='nav nav-list bs-docs-sidenav' data-offset-top='80' data-spy='affix'>
 
           <!-- <li><a href="#getting_started">Getting Started</a></li><li><a href="#communicating_with_javascript">Communicating with JavaScript</a></li><li class="active"><a href="#examples__practice">Examples / Practice</a></li> -->
     </ul>
   </div>
   <div class='span9 content'>
-    <div class='alert'>
-  <p>
-    This page is currently under construction. In the mean time please
-    consider looking at the reports <a href='http://www.norm2782.com/improving-uhc-js-report.pdf'>Improving the
-    UHC JavaScript Backend</a> (Jurriën Stutterheim) and <a href='http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell/'>Getting
-    Rid of JavaScript with Haskell</a> (Alessandro Vermeulen). Also take a look at
-    <a href='http://www.haskell.org/haskellwiki/The_JavaScript_Problem#UHC'>Haskell:
-    The JavaScript Problem</a>.
-  </p>
-</div>
-<h2 id='a_short_introduction_how_to_get_started'>A short introduction: how to get started</h2>
+    <h2 id='what_is_uhcjs'>What is UHC-JS?</h2>
 
-<p>Please report bugs in the UHC-JS backend or in the UHC-JS library in the <a href='https://github.com/UU-ComputerScience/uhc-js/issues'>GitHub Issue Tracker</a>. Please note that UHC related issues will eventually get their own issue tracker once the UHC has been moved to GitHub. Also consider joining <a href='irc://irc.freenode.net/uhcjs'>#uhcjs</a> on FreeNode.</p>
-
-<h2 id='demo'>Demo</h2>
-
-<p>The JCU app discussed in &#8220;Getting Rid of JavaScript with Haskell&#8221; has been put online by <a href='http://chrisdone.com/'>Chris Done</a>.</p>
-
-<p>Go to the <a href='http://jcu.chrisdone.com/login'>instance</a>. And log in with username &#8220;uhcjsdemo@example.com&#8221; and password &#8220;123456&#8221;. And check out the <a href='https://github.com/UU-ComputerScience/JCU'>source code</a>. For installation instructions please refer to the section &#8220;Locations and Setup&#8221; in &#8220;Getting Rid of JavaScript with Haskell&#8221;.</p>
+<p>UHC-JS is the JavaScript backend of the Utrecht Haskell Compiler. It is able of compiling any Haskell program to JavaScript. This makes it possible to run your Haskell programs in the browser. Furthermore there is now no more reason for having to write the verbose language that is called JavaScript yourself. Hurray!</p>
 
 <h2 id='resources'>Resources</h2>
 
@@ -99,33 +83,32 @@
 <li><a href='https://github.com/spockz/JCU/tree/master/resources/static/hjs'>Client-Side Haskell code</a> - Alessandro Vermeulen</li>
 </ul>
 
-<h2 id='installation_instructions'>Installation instructions</h2>
+<h2 id='demo'>Demo</h2>
 
-<p>Clone the latest version of the JavaScript branch of UHC. This is somewhat risky but new features will be found here first.</p>
+<p>The JCU app discussed in &#8220;Getting Rid of JavaScript with Haskell&#8221; has been put online by <a href='http://chrisdone.com/'>Chris Done</a>.</p>
 
-<p>Make sure you have the dependencies, also make sure you have GHC installed:</p>
-<div class='highlight'><pre><code class='bash'>cabal install uulib uuagc
-</code></pre>
-</div>
-<p>Now build the UHC:</p>
-<div class='highlight'><pre><code class='bash'><span class='lineno'>1</span> <span class='nv'>$&gt;</span> <span class='nb'>cd </span>somewhere
-<span class='lineno'>2</span> <span class='nv'>$&gt;</span> git clone git://github.com/UU-ComputerScience/uhc.git
-<span class='lineno'>3</span> <span class='nv'>$&gt;</span> <span class='nb'>cd </span>uhc
-<span class='lineno'>4</span> <span class='nv'>$&gt;</span> git checkout js
-<span class='lineno'>5</span> <span class='nv'>$&gt;</span> <span class='nb'>cd </span>EHC
-<span class='lineno'>6</span> <span class='nv'>$&gt;</span> autoconf
-<span class='lineno'>7</span> <span class='nv'>$&gt;</span> ./configure
-<span class='lineno'>8</span> <span class='nv'>$&gt;</span> make uhc
-</code></pre>
-</div>
-<p>Optionally perform a <code>make install</code>.</p>
+<p>Go to the <a href='http://jcu.chrisdone.com/login'>instance</a>. And log in with username &#8220;uhcjsdemo@example.com&#8221; and password &#8220;123456&#8221;. And check out the <a href='https://github.com/UU-ComputerScience/JCU'>source code</a>. For installation instructions please refer to the section &#8220;Locations and Setup&#8221; in &#8220;Getting Rid of JavaScript with Haskell&#8221;.</p>
+
+<h2 id='need_help'>Need help?</h2>
+
+<p>There are currently two major resources for help with UHC. The general <a href='http://www.cs.uu.nl/wiki/bin/view/Ehc/Documentation'>UHC documentation</a> describes the usage of UHC in general. The <a href='/uhc-js/documentation.html'>documentation</a> page provides documentation for UHC JavaScript specific scenarios.</p>
+
+<p>If you do not reach a solution, please don&#8217;t hesitate to join the IRC channel <a href='irc://irc.freenode.net/uhcjs'>#uhcjs</a> on FreeNode.</p>
+
+<h3 id='installation'>Installation</h3>
+
+<p>For help installing see <a href='/uhc-js/documentation.html#installation_of_uhc'>Installation of UHC</a>.</p>
+
+<h3 id='github_and_issues'>GitHub and Issues</h3>
+
+<p><a href='https://github.com/UU-ComputerScience/'>Our repositories</a> are located at GitHub. You will find the issue trackers there as well.</p>
 
 <h3 id='installation_script_for_jcuhs'>Installation script for JCU-HS</h3>
 
 <p>An installation script for installing the JCU app together with its dependencies is available from <a href='https://gist.github.com/1902090' title='A Ruby Script to install JCU and dependencies.'>this gist</a>. Currently the script does <strong>not</strong> build nor install UHC for you.</p>
 
 <p>If you trust us you may run the following command directly from your shell. It will run the installer in your current working directory:</p>
-<div class='highlight'><pre><code class='ruby'><span class='n'>ruby</span> <span class='o'>&lt;</span><span class='p'>(</span><span class='n'>curl</span> <span class='o'>-</span><span class='n'>s</span> <span class='n'>https</span><span class='ss'>:/</span><span class='o'>/</span><span class='n'>raw</span><span class='o'>.</span><span class='n'>github</span><span class='o'>.</span><span class='n'>com</span><span class='o'>/</span><span class='n'>gist</span><span class='o'>/</span><span class='mi'>1902090</span><span class='o'>/</span><span class='n'>e2a0508cea4bd4bc3abeed87b054e32e1c99931e</span><span class='o'>/</span><span class='n'>install</span><span class='o'>.</span><span class='n'>rb</span><span class='p'>)</span>
+<div class='highlight'><pre><code class='ruby'><span class='n'>ruby</span> <span class='o'>&lt;</span><span class='p'>(</span><span class='n'>curl</span> <span class='o'>-</span><span class='n'>s</span> <span class='n'>https</span><span class='ss'>:/</span><span class='o'>/</span><span class='n'>raw</span><span class='o'>.</span><span class='n'>github</span><span class='o'>.</span><span class='n'>com</span><span class='o'>/</span><span class='n'>gist</span><span class='o'>/</span><span class='mi'>1902090</span><span class='o'>/</span><span class='mo'>05</span><span class='mi'>88</span><span class='n'>a1a1e5a7bb8935ee9afdd7d96949abbe7ff5</span><span class='o'>/</span><span class='n'>install</span><span class='o'>.</span><span class='n'>rb</span><span class='p'>)</span>
 </code></pre>
 </div>
 <p>Follow the on screen instructions when running the installer.</p>
@@ -133,6 +116,7 @@
   </div>
 </div>
     </div>
+    <div id="banners"></div>
   </div>
   <script src="js/jquery-1.8.0.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

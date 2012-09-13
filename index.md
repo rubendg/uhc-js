@@ -4,44 +4,14 @@ title: "The Utrecht Haskell Compiler JavaScript Backend Page"
 permalink: /
 ---
 {% capture content %}
-<div class="alert">
-  <p>
-    This page is currently under construction. In the mean time please
-    consider looking at the reports <a
-    href="http://www.norm2782.com/improving-uhc-js-report.pdf">Improving the
-    UHC JavaScript Backend</a> (Jurriën Stutterheim) and <a
-    href="http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell/">Getting
-    Rid of JavaScript with Haskell</a> (Alessandro Vermeulen). Also take a look at
-    <a
-    href="http://www.haskell.org/haskellwiki/The_JavaScript_Problem#UHC">Haskell:
-    The JavaScript Problem</a>.
-  </p>
-</div>
 
+## What is UHC-JS?
+UHC-JS is the JavaScript backend of the Utrecht Haskell Compiler. It is able of
+compiling any Haskell program to JavaScript. This makes it possible to run your
+Haskell programs in the browser. Furthermore there is now no more reason for
+having to write the verbose language that is called JavaScript yourself. Hurray!
 
-A short introduction: how to get started
-----------------------------------------
-Please report bugs in the UHC-JS backend or in the UHC-JS library in the [GitHub
-Issue Tracker](https://github.com/UU-ComputerScience/uhc-js/issues). Please note
-that UHC related issues will eventually get their own issue tracker once the UHC
-has been moved to GitHub. Also consider joining
-[#uhcjs](irc://irc.freenode.net/uhcjs) on FreeNode.
-
-
-Demo
-----
-The JCU app discussed in "Getting Rid of JavaScript with Haskell" has been put
-online by [Chris Done](http://chrisdone.com/).
-
-Go to the [instance](http://jcu.chrisdone.com/login). And log in with username
-"uhcjsdemo@example.com" and password "123456". And check out the [source
-code](https://github.com/UU-ComputerScience/JCU). For installation instructions
-please refer to the section "Locations and Setup" in "Getting Rid of JavaScript
-with Haskell".
-
-
-Resources
----------
+## Resources
 
 * [Improving the UHC JavaScript Backend](http://www.norm2782.com/improving-uhc-js-report.pdf) - Jurriën Stutterheim
 * [Getting Rid of JavaScript with Haskell](http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell) - Alessandro Vermeulen
@@ -52,35 +22,35 @@ Resources
 * [UHC JS Backend Quick Start](http://chrisdone.com/posts/2012-01-06-uhc-javascript.html) - Chris Done
 * [Client-Side Haskell code](https://github.com/spockz/JCU/tree/master/resources/static/hjs) - Alessandro Vermeulen
 
+## Demo
+The JCU app discussed in "Getting Rid of JavaScript with Haskell" has been put
+online by [Chris Done](http://chrisdone.com/).
 
-Installation instructions
--------------------------
+Go to the [instance](http://jcu.chrisdone.com/login). And log in with username
+"uhcjsdemo@example.com" and password "123456". And check out the [source
+code](https://github.com/UU-ComputerScience/JCU). For installation instructions
+please refer to the section "Locations and Setup" in "Getting Rid of JavaScript
+with Haskell".
 
-Clone the latest version of the JavaScript branch of UHC. This is somewhat 
-risky but new features will be found here first.
+## Need help?
+There are currently two major resources for help with UHC. The general [UHC
+documentation][uhc-extensive-doc] describes the usage of UHC in general. The
+[documentation]({{site.baseurl}}/documentation.html) page provides documentation
+for UHC JavaScript specific scenarios.
 
-Make sure you have the dependencies, also make sure you have GHC installed:
+If you do not reach a solution, please don't hesitate to join the IRC channel
+[#uhcjs](irc://irc.freenode.net/uhcjs) on FreeNode.
 
-{% highlight bash %}
-cabal install uulib uuagc
-{% endhighlight %}
 
-Now build the UHC:
 
-{% highlight bash linenos %}
-$> cd somewhere
-$> git clone git://github.com/UU-ComputerScience/uhc.git
-$> cd uhc
-$> git checkout js
-$> cd EHC
-$> autoconf
-$> ./configure
-$> make uhc
-{% endhighlight %}
+### Installation
+For help installing see [Installation of UHC]({{site.baseurl}}/documentation.html#installation_of_uhc).
 
-Optionally perform a `make install`.
+### GitHub and Issues
+[Our repositories](https://github.com/UU-ComputerScience/) are located at
+GitHub. You will find the issue trackers there as well.
 
-### Installation script for JCU-HS ###
+### Installation script for JCU-HS
 An installation script for installing the JCU app together with its dependencies
 is available from [this gist][jcu-install-script]. Currently the script does
 **not** build nor install UHC for you.
@@ -89,19 +59,24 @@ If you trust us you may run the following command directly from your shell. It
 will run the installer in your current working directory:
 
 {% highlight ruby %}
-ruby <(curl -s https://raw.github.com/gist/1902090/e2a0508cea4bd4bc3abeed87b054e32e1c99931e/install.rb)
+ruby <(curl -s https://raw.github.com/gist/1902090/0588a1a1e5a7bb8935ee9afdd7d96949abbe7ff5/install.rb)
 {% endhighlight %}
 
 Follow the on screen instructions when running the installer.
 
+
 [jcu-spockz-fork]: https://github.com/spockz/JCU
 [jcu-install-script]: https://gist.github.com/1902090 "A Ruby Script to install JCU and dependencies."
+[uhc-github]: https://github.com/UU-ComputerScience
+[uhc-js]: https://github.com/UU-ComputerScience/uhc-js
+[uhc-extensive-doc]: http://www.cs.uu.nl/wiki/bin/view/Ehc/Documentation
+
 {% endcapture %}
 
 <div class="container">
   <div class="row">
   <div class="span3 bs-docs-sidebar">
-    <ul class="nav nav-list bs-docs-sidenav" data-spy="affix"  data-offset-top="132">
+    <ul class="nav nav-list bs-docs-sidenav" data-spy="affix"  data-offset-top="80">
 
           <!-- <li><a href="#getting_started">Getting Started</a></li><li><a href="#communicating_with_javascript">Communicating with JavaScript</a></li><li class="active"><a href="#examples__practice">Examples / Practice</a></li> -->
     </ul>

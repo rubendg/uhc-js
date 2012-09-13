@@ -10,12 +10,17 @@
 }
 #header {
   padding: 8px;
-  background: transparent url('../images/header.png') no-repeat 8px;
+
+}
+
+#banners {
+  padding: 8px;
   height: 116px;
+  background: transparent url('../images/header.png') no-repeat right 8px;
 }
 
 #header h1 {
-  float:right;
+  text-align:right;
 }
 
 .bs-docs-sidenav {

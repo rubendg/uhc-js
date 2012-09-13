@@ -82,14 +82,18 @@ This is the list of currently active UHC-JS enabled projects:
 
 * JCU-App ([demo](http://jcu.chrisdone.com/login), [announce](http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell))
 
+[jcu-spockz-fork]: https://github.com/spockz/JCU
+[jcu-install-script]: https://gist.github.com/1902090 "A Ruby Script to install JCU and dependencies."
+[uhc-github]: https://github.com/UU-ComputerScience
 [uhc-js]: https://github.com/UU-ComputerScience/uhc-js
 [uhc-extensive-doc]: http://www.cs.uu.nl/wiki/bin/view/Ehc/Documentation
+
 {% endcapture %}
 
 <div class="container">
   <div class="row">
   <div class="span3 bs-docs-sidebar">
-    <ul class="nav nav-list bs-docs-sidenav" data-spy="affix"  data-offset-top="132">
+    <ul class="nav nav-list bs-docs-sidenav" data-spy="affix"  data-offset-top="85">
 
           <!-- <li><a href="#getting_started">Getting Started</a></li><li><a href="#communicating_with_javascript">Communicating with JavaScript</a></li><li class="active"><a href="#examples__practice">Examples / Practice</a></li> -->
     </ul>
