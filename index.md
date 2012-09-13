@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "The Utrecht Haskell Compiler JavaScript Backend Page"
+title: "The Utrecht Haskell Compiler JavaScript Backend"
 permalink: /
 ---
 {% capture content %}
@@ -11,7 +11,17 @@ compiling any Haskell program to JavaScript. This makes it possible to run your
 Haskell programs in the browser. Furthermore there is now no more reason for
 having to write the verbose language that is called JavaScript yourself. Hurray!
 
+Why do you want to write your web applications in Haskell? Simple, because you
+will have access to all goodies that Haskell has to offer, pureness, lazy
+evaluation, a compact syntax, an advanced type-system, and access to several
+existing libraries that include convenient to use parsers. Haskell offers you
+the ability to whip up your own (e)DSL with little effort including any binary
+operators you need.
+
 ## Resources
+For the more academically oriented reader we provide the following reading
+materials:
+
 
 * [Improving the UHC JavaScript Backend](http://www.norm2782.com/improving-uhc-js-report.pdf) - Jurriën Stutterheim
 * [Getting Rid of JavaScript with Haskell](http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell) - Alessandro Vermeulen
@@ -34,9 +44,9 @@ with Haskell".
 
 ## Need help?
 There are currently two major resources for help with UHC. The general [UHC
-documentation][uhc-extensive-doc] describes the usage of UHC in general. The
-[documentation]({{site.baseurl}}/documentation.html) page provides documentation
-for UHC JavaScript specific scenarios.
+documentation][uhc-extensive-doc] describes the usage of UHC in general and the
+[documentation]({{site.baseurl}}/documentation.html) page providing
+documentation for UHC JavaScript specific scenarios.
 
 If you do not reach a solution, please don't hesitate to join the IRC channel
 [#uhcjs](irc://irc.freenode.net/uhcjs) on FreeNode.
@@ -49,20 +59,6 @@ For help installing see [Installation of UHC]({{site.baseurl}}/documentation.htm
 ### GitHub and Issues
 [Our repositories](https://github.com/UU-ComputerScience/) are located at
 GitHub. You will find the issue trackers there as well.
-
-### Installation script for JCU-HS
-An installation script for installing the JCU app together with its dependencies
-is available from [this gist][jcu-install-script]. Currently the script does
-**not** build nor install UHC for you.
-
-If you trust us you may run the following command directly from your shell. It
-will run the installer in your current working directory:
-
-{% highlight ruby %}
-ruby <(curl -s https://raw.github.com/gist/1902090/0588a1a1e5a7bb8935ee9afdd7d96949abbe7ff5/install.rb)
-{% endhighlight %}
-
-Follow the on screen instructions when running the installer.
 
 
 [jcu-spockz-fork]: https://github.com/spockz/JCU

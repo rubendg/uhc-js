@@ -80,7 +80,21 @@ the [UHC-JavaScript][uhc-js] library.
 ## Examples / Practice
 This is the list of currently active UHC-JS enabled projects:
 
-* JCU-App ([demo](http://jcu.chrisdone.com/login), [announce](http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell))
+* JCU-HS ([demo](http://jcu.chrisdone.com/login), [announce](http://alessandrovermeulen.me/2012/01/26/getting-rid-of-javascript-with-haskell))
+
+### Installation script for JCU-HS
+An installation script for installing the JCU app together with its dependencies
+is available from [this gist][jcu-install-script]. Currently the script does
+**not** build nor install UHC for you.
+
+If you trust us you may run the following command directly from your shell. It
+will run the installer in your current working directory:
+
+{% highlight bash %}
+ruby <(curl -s https://raw.github.com/gist/1902090/0588a1a1e5a7bb8935ee9afdd7d96949abbe7ff5/install.rb)
+{% endhighlight %}
+
+Follow the on screen instructions when running the installer.
 
 [jcu-spockz-fork]: https://github.com/spockz/JCU
 [jcu-install-script]: https://gist.github.com/1902090 "A Ruby Script to install JCU and dependencies."
