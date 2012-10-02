@@ -5,6 +5,15 @@ import Language.UHC.JS.Marshal
 import Language.UHC.JS.Primitives   
 import Language.UHC.JS.ECMA.String  
 
+class GetObjectRef a where
+  getObjectRef :: a -> b
+
+cast :: GetObjectRef b => a -> Maybe b
+cast a :: Maybe b =
+  if _primInstanceOf a (getObjectRef (undefined :: b))
+   then Just (unsafeCoerce a)
+   else Nothing
+
 foreign import js "wrapper"
   wrapFunc :: IO a -> IO (JSFunction_ (IO a))
 
@@ -64,3 +73,6 @@ alert = _alert . toJS
 
 foreign import js "alert(%*)"
   _alert :: JSString -> IO ()
+
+foreign import js "console.log(%*)"
+  _trace :: a -> IO ()

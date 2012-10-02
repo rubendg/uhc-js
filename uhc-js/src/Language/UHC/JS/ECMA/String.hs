@@ -101,6 +101,3 @@ foreign import js "%1.trim()"
 
 foreign import js "%1.length"
   length :: JSString -> Int
-
-foreign import prim "primStringToPackedString"
-  stringToJSString :: String -> JSString

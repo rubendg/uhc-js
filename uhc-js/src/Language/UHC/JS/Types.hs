@@ -1,5 +1,4 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
-
 module Language.UHC.JS.Types where
 
 import Control.Monad

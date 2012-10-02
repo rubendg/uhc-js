@@ -1,2 +1,2 @@
 #!/bin/bash
-cd src && uhc -tjs Main.hs
+cd src && ${UHC} -tjs Main.hs

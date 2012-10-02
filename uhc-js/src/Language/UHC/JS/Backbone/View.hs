@@ -29,12 +29,6 @@ jQuery = _jQuery . toJS
 jQuery' :: String -> JSAny a -> IO JQuery
 jQuery' s j = _jQuery' (toJS s) j
 
-foreign import js "%1.$(%*)"
-  _jQuery :: JSString -> IO JQuery
-
-foreign import js "%1.$(%*)"
-  _jQuery' :: JSString -> JSAny a -> IO JQuery
-
 setRender :: JSFunction_ a -> BBView -> IO BBView
 setRender = setAttr "render"
 
