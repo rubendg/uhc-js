@@ -6,33 +6,34 @@ import Language.UHC.JS.ECMA.Array
 import Language.UHC.JS.ECMA.String
 import Language.UHC.JS.Primitives
 import Language.UHC.JS.Types
+import Language.UHC.JS.Marshal
 
 
 data JSONPtr
-type JSON = JSPtr JSONPtr
+type JSON = JSObject_ JSONPtr
 
-stringify :: JSPtr a -> IO String
-stringify = fromJSM . _stringify
+stringify :: JSAny a -> IO String
+stringify = liftFromJS_ . _stringify
 
 foreign import js "JSON.stringify(%*)"
-  _stringify :: JSPtr a -> IO JSString
+  _stringify :: JSAny a -> IO JSString
 
 stringify' :: JSArray a -> IO String
-stringify' = fromJSM . _stringify'
+stringify' = liftFromJS_ . _stringify'
 
 foreign import js "JSON.stringify(%*)"
   _stringify' :: JSArray a -> IO JSString
 
 -- TODO: All permutations for stringify
 
-parse :: String -> IO (JSPtr a)
+parse :: String -> IO (JSAny a)
 parse = _parse . toJS
 
-parse' :: String -> IO () -> IO (JSPtr a)
+parse' :: String -> IO () -> IO (JSAny a)
 parse' s c = _parse' (toJS s) c
 
 foreign import js "JSON.parse(%*)"
-  _parse :: JSString -> IO (JSPtr a)
+  _parse :: JSString -> IO (JSAny a)
 
 foreign import js "JSON.parse(%*)"
-  _parse' :: JSString -> IO () -> IO (JSPtr a)
+  _parse' :: JSString -> IO () -> IO (JSAny a)

@@ -5,15 +5,17 @@ import Language.UHC.JS.Primitives
 import Language.UHC.JS.ECMA.String
 import Language.UHC.JS.Types
 import Language.UHC.JS.W3C.HTML5
+import Language.UHC.JS.Prelude
+import Language.UHC.JS.Marshal
 
 data BBViewPtr
-type BBView = JSPtr BBViewPtr
+type BBView = JSObject_ BBViewPtr
 
 foreign import js "Backbone.View.extend(%*)"
-  extend :: AnonObj -> IO (JSFunPtr b)
+  extend :: JSObject_ a -> IO (JSFunction_ b)
 
 foreign import js "Backbone.View.extend(%*)"
-  extend' :: AnonObj -> AnonObj -> IO (JSFunPtr b)
+  extend' :: JSObject_ a -> JSObject_ b -> IO (JSFunction_ b)
 
 getEl :: BBView -> IO Element
 getEl = getAttr "el"
@@ -24,16 +26,16 @@ setEl = setAttr "el"
 jQuery :: String -> IO JQuery
 jQuery = _jQuery . toJS
 
-jQuery' :: String -> JSPtr a -> IO JQuery
+jQuery' :: String -> JSAny a -> IO JQuery
 jQuery' s j = _jQuery' (toJS s) j
 
 foreign import js "%1.$(%*)"
   _jQuery :: JSString -> IO JQuery
 
 foreign import js "%1.$(%*)"
-  _jQuery' :: JSString -> JSPtr a -> IO JQuery
+  _jQuery' :: JSString -> JSAny a -> IO JQuery
 
-setRender :: JSFunPtr a -> BBView -> IO BBView
+setRender :: JSFunction_ a -> BBView -> IO BBView
 setRender = setAttr "render"
 
 foreign import js "%1.remove()"
@@ -45,17 +47,17 @@ make = _make . toJS
 foreign import js "%1.make(%*)"
   _make :: JSString -> IO Element
 
-make' :: String -> AnonObj -> IO Element
+make' :: String -> JSObject_ a -> IO Element
 make' s o = _make' (toJS s) o
 
 foreign import js "%1.make(%*)"
-  _make' :: JSString -> AnonObj -> IO Element
+  _make' :: JSString -> JSObject_ a -> IO Element
 
-make'' :: String -> AnonObj -> String -> IO Element
+make'' :: String -> JSObject_ a -> String -> IO Element
 make'' s1 o s2 = _make'' (toJS s1) o (toJS s2)
 
 foreign import js "%1.make(%*)"
-  _make'' :: JSString -> AnonObj -> JSString -> IO Element
+  _make'' :: JSString -> JSObject_ a -> JSString -> IO Element
 
 foreign import js "delegateEvents(%*)"
-  delegateEvents :: AnonObj -> IO ()
+  delegateEvents :: JSObject_ a -> IO ()

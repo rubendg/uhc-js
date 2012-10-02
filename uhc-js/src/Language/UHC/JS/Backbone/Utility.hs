@@ -4,7 +4,7 @@ import Language.UHC.JS.Primitives
 import Language.UHC.JS.Types
 
 data BackbonePtr
-type Backbone = JSPtr BackbonePtr
+type Backbone = JSObject_ BackbonePtr
 
 foreign import js "Backbone.noConflict()"
   noConflict :: Backbone

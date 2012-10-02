@@ -1,6 +1,5 @@
 module Main where
 
-import  Language.UHC.JS.Assorted
 import  Language.UHC.JS.Backbone
 import  Language.UHC.JS.ECMA
 import  Language.UHC.JS.JQuery.JQuery

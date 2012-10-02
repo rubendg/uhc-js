@@ -64,9 +64,11 @@ import Language.UHC.JS.Types
 import Language.UHC.JS.Primitives
 import Language.UHC.JS.ECMA.Array
 import Language.UHC.JS.ECMA.String
+import Language.UHC.JS.Marshal
+import Data.Maybe (fromJust)
 
 data DocumentPtr
-type Document = JSPtr DocumentPtr
+type Document = JSObject_ DocumentPtr
 
 foreign import js "document"
   document :: IO Document
@@ -108,7 +110,7 @@ foreign import js "document.createElement(%*)"
   _documentCreateElement :: JSString -> IO Node
 
 data AnchorPtr
-type Anchor = JSPtr AnchorPtr
+type Anchor = JSObject_ AnchorPtr
 
 foreign import js "%1.charset"
   anchorCharset :: Anchor -> JSString
@@ -135,19 +137,19 @@ foreign import js "%1.type"
   anchorType :: Anchor -> JSString
 
 data FormPtr
-type Form = JSPtr FormPtr
+type Form = JSObject_ FormPtr
 
 foreign import js "%1.elements"
   formElements :: Form -> JSArray Element
 
 data ImagePtr
-type Image = JSPtr ImagePtr
+type Image = JSObject_ ImagePtr
 
 data LinkPtr
-type Link  = JSPtr LinkPtr
+type Link  = JSObject_ LinkPtr
 
 data ElementPtr
-type Element = JSPtr ElementPtr
+type Element = JSObject_ ElementPtr
 
 foreign import js "%1.innerHTML"
   elementInnerHTML :: Node -> JSString
@@ -177,7 +179,7 @@ foreign import js "%1.appendChild(%2)"
   elementAppendChild :: Node -> Node -> IO ()
 
 data NodePtr
-type Node = JSPtr NodePtr
+type Node = JSObject_ NodePtr
 
 foreign import js "%1.nodeName"
   nodeName :: Node -> JSString
@@ -186,7 +188,7 @@ foreign import js "%1.nodeType"
   nodeType :: Node -> Int
 
 data NodeListPtr x
-type NodeList x = JSPtr (NodeListPtr x)
+type NodeList x = JSObject_ (NodeListPtr x)
 
 foreign import js "%1.length"
   nodeListLength :: NodeList Node -> Int
@@ -195,7 +197,7 @@ foreign import js "%1[%2]"
   nodeListItem :: NodeList Node -> Int -> IO Node
 
 data NamedNodeMapPtr x
-type NamedNodeMap x    = JSPtr (NamedNodeMapPtr x)
+type NamedNodeMap x    = JSObject_ (NamedNodeMapPtr x)
 
 foreign import js "%1.length"
   namedNodeMapLength :: NamedNodeMap Node -> Int
@@ -213,7 +215,7 @@ foreign import js "%1.setNamedItem(%*)"
   namedNodeMapSetNamedItem :: NamedNodeMap Node -> Node -> IO Node
 
 data AttrPtr
-type Attr    = JSPtr AttrPtr
+type Attr    = JSObject_ AttrPtr
 
 foreign import js "%1.value"
   attrValue :: Attr -> JSString
@@ -222,10 +224,10 @@ foreign import js "window.location.pathname"
   _pathName :: IO JSString
 
 pathName :: IO String
-pathName = fmap fromJS _pathName
+pathName = liftFromJS_ _pathName
 
 encodeURIComponent :: String -> String
-encodeURIComponent = (fromJS :: JSString -> String) . _encodeURIComponent . (toJS :: String -> JSString)
+encodeURIComponent = fromJust . (fromJS :: JSString -> Maybe String) . _encodeURIComponent . (toJS :: String -> JSString)
 
 foreign import js "encodeURIComponent(%1)"
   _encodeURIComponent :: JSString -> JSString

@@ -1,24 +1,8 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
-
 module Language.UHC.JS.ECMA.String where
 
 import Language.UHC.JS.Types
-import UHC.Base (packedStringToString)
-
-type JSString = PackedString
-
-instance Show JSString where
-  show = jsStringToString
-
-instance ToJS String JSString where
-  toJS = stringToJSString
-
-instance FromJS JSString String where
-  fromJS = jsStringToString
-
-
-jsStringToString :: JSString -> String
-jsStringToString = packedStringToString
+import Language.UHC.JS.Marshal
 
 foreign import js "String.fromCharCode(%*)"
   fromCharCode :: Int -> JSString

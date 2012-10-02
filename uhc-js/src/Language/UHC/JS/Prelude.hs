@@ -1,18 +1,66 @@
-module Language.UHC.JS.Prelude (
-    module Language.UHC.JS.Types
-  , module Language.UHC.JS.Primitives
-  , module Language.UHC.JS.ECMA.String
-
-  , wrapIO
-  , wrapJSPtraIO)
- where
+module Language.UHC.JS.Prelude where
 
 import Language.UHC.JS.Types
+import Language.UHC.JS.Marshal
 import Language.UHC.JS.Primitives   
 import Language.UHC.JS.ECMA.String  
 
 foreign import js "wrapper"
-  wrapIO :: IO () -> IO (JSFunPtr (IO ()))
-  
+  wrapFunc :: IO () -> IO (JSFunction_ (IO ()))
+
 foreign import js "wrapper"
-  wrapJSPtraIO :: (JSPtr a -> IO ()) -> IO (JSFunPtr(JSPtr a -> IO ()))  
+  wrapFunc1 :: (a -> IO ()) -> IO (JSFunction_ (a -> IO ()))
+
+foreign import js "dynamic"
+   unwrapFunc :: JSFunction_ (IO ()) -> IO (IO ())
+
+foreign import js "dynamic"
+   unwrapFunc1 :: JSFunction_ (a -> IO ()) -> IO (a -> IO ())
+
+newObj :: String -> IO JSObject
+newObj = _primNewObj . toJS
+
+mkCtor :: String -> IO (JSFunction_ a)
+mkCtor = _primMkCtor . toJS
+
+getCtor :: String -> IO (JSFunction_ a)
+getCtor s1 = _primGetCtor (toJS s1)
+
+setCtor :: String -> JSFunction_ a -> IO ()
+setCtor s1 fp = _primSetCtor (toJS s1) fp
+
+getAttr :: String -> JSObject_ p -> IO a
+getAttr s p = _primGetAttr (toJS s) p
+
+setAttr :: String -> a -> JSObject_ p -> IO (JSObject_ p)
+setAttr s a p = _primSetAttr (toJS s) a p
+
+setAttr_ :: String -> a -> JSObject_ p -> IO ()
+setAttr_ s a p = setAttr s a p >> return ()
+
+pureSetAttr :: String -> a -> JSObject_ p -> JSObject_ p
+pureSetAttr s a p = _primPureSetAttr (toJS s) a p
+
+modAttr :: String -> (a -> b) -> JSObject_ p -> IO (JSObject_ p)
+modAttr s f p = _primModAttr (toJS s) f p
+
+pureModAttr :: String -> (a -> b) -> JSObject_ p -> JSObject_ p
+pureModAttr s f p = _primPureModAttr (toJS s) f p
+
+getProtoAttr :: String -> String -> IO a
+getProtoAttr x y = _primGetProtoAttr (toJS x) (toJS y)
+
+setProtoAttr :: String -> a -> String -> IO ()
+setProtoAttr x a y = _primSetProtoAttr (toJS x) a (toJS y)
+
+modProtoAttr :: String -> (a -> b) -> String -> IO ()
+modProtoAttr x f y = _primModProtoAttr (toJS x) f (toJS y)
+
+foreign import js "{}"
+  mkObj :: a -> IO (JSObject_ b)
+
+alert :: String -> IO ()
+alert = _alert . toJS
+
+foreign import js "alert(%*)"
+  _alert :: JSString -> IO ()

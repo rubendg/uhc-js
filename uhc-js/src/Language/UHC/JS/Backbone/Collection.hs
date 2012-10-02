@@ -5,18 +5,19 @@ import Language.UHC.JS.ECMA.Array
 import Language.UHC.JS.ECMA.String
 import Language.UHC.JS.Primitives
 import Language.UHC.JS.Types
-
+import Language.UHC.JS.Marshal
+import Language.UHC.JS.Prelude
 
 data BBCollectionPtr a
-type BBCollection a = JSPtr (BBCollectionPtr a)
+type BBCollection a = JSObject_ (BBCollectionPtr a)
 
 foreign import js "Backbone.Collection.extend(%*)"
-  extend :: AnonObj -> IO (JSFunPtr a)
+  extend :: JSObject_ a -> IO (JSFunction_ b)
 
 foreign import js "Backbone.Collection.extend(%*)"
-  extend' :: AnonObj -> AnonObj -> IO (JSFunPtr a)
+  extend' :: JSObject_ a -> JSObject_ b -> IO (JSFunction_ b)
 
-model :: JSFunPtr b -> BBCollection a -> IO (BBCollection a)
+model :: JSFunction_ b -> BBCollection a -> IO (BBCollection a)
 model = setAttr "model"
 
 models :: BBCollection a -> IO (JSArray (BBModel b))
@@ -31,25 +32,25 @@ foreign import js "%1.add(%*)"
   add :: BBCollection a -> BBModel b -> IO ()
 
 foreign import js "%1.add(%*)"
-  add' :: BBCollection a -> BBModel b -> AnonObj -> IO ()
+  add' :: BBCollection a -> BBModel b -> JSObject_ c -> IO ()
 
 foreign import js "%1.add(%*)"
   addA :: BBCollection a -> JSArray (BBModel b) -> IO ()
 
 foreign import js "%1.add(%*)"
-  addA' :: BBCollection a -> JSArray (BBModel b) -> AnonObj -> IO ()
+  addA' :: BBCollection a -> JSArray (BBModel b) -> JSObject_ c -> IO ()
 
 foreign import js "%1.remove(%*)"
   remove :: BBCollection a -> BBModel b -> IO ()
 
 foreign import js "%1.remove(%*)"
-  remove' :: BBCollection a -> BBModel b -> AnonObj -> IO ()
+  remove' :: BBCollection a -> BBModel b -> JSObject_ c -> IO ()
 
 foreign import js "%1.remove(%*)"
   removeA :: BBCollection a -> JSArray (BBModel b) -> IO ()
 
 foreign import js "%1.remove(%*)"
-  removeA' :: BBCollection a -> JSArray (BBModel b) -> AnonObj -> IO ()
+  removeA' :: BBCollection a -> JSArray (BBModel b) -> JSObject_ c -> IO ()
 
 foreign import js "%1.get(%*)"
   get :: BBCollection a -> Int -> IO (BBModel b)
@@ -68,7 +69,7 @@ foreign import js "%1.at(%*)"
 clength :: BBCollection a -> IO Int
 clength = getAttr "length"
 
-setComperator :: JSFunPtr a -> BBCollection b -> IO (BBCollection b)
+setComperator :: JSFunction_ a -> BBCollection b -> IO (BBCollection b)
 setComperator = setAttr "comparator"
 
 
@@ -76,7 +77,7 @@ foreign import js "%1.sort()"
   sort :: BBCollection a -> IO ()
 
 foreign import js "%1.sort(%*)"
-  sort' :: BBCollection a -> AnonObj -> IO ()
+  sort' :: BBCollection a -> JSFunction_ b -> IO ()
 
 pluck :: BBCollection a -> String -> IO (JSArray b)
 pluck c s = _pluck c (toJS s)
@@ -89,7 +90,7 @@ setUrl s m = setAttr "url" s' m
   where  s' :: JSString
          s' = toJS s
 
-setUrl' :: JSFunPtr b -> BBCollection a -> IO (BBCollection a)
+setUrl' :: JSFunction_ b -> BBCollection a -> IO (BBCollection a)
 setUrl' = setAttr "url"
 
 -- TODO: parse
@@ -98,16 +99,16 @@ foreign import js "%1.fetch()"
   fetch :: BBCollection a -> IO ()
 
 foreign import js "%1.fetch(%*)"
-  fetch' :: BBCollection a -> AnonObj -> IO ()
+  fetch' :: BBCollection a -> JSFunction_ b -> IO ()
 
 foreign import js "%1.reset(%*)"
   reset :: BBCollection a -> JSArray (BBModel b) -> IO ()
 
 foreign import js "%1.reset(%*)"
-  reset' :: BBCollection a -> JSArray (BBModel b) -> AnonObj -> IO ()
+  reset' :: BBCollection a -> JSArray (BBModel b) -> JSFunction_ c -> IO ()
 
 foreign import js "%1.create(%*)"
   create :: BBCollection a -> JSArray (BBModel b) -> IO ()
 
 foreign import js "%1.create(%*)"
-  create' :: BBCollection a -> JSArray (BBModel b) -> AnonObj -> IO ()
+  create' :: BBCollection a -> JSArray (BBModel b) -> JSFunction_ c -> IO ()

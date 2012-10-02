@@ -1,107 +1,81 @@
 module Language.UHC.JS.Primitives where
 
-import Language.UHC.JS.ECMA.String
 import Language.UHC.JS.Types
-import UHC.Ptr
-
-data JSPtr a
-type JSFunPtr a = FunPtr a
-
-instance JS (JSPtr a)
-instance JS (JSString)
-
-type AnonObj = forall a . JSPtr a
 
 foreign import prim "primMkAnonObj"
-  mkAnonObj :: IO AnonObj
+  mkAnonObj :: IO JSObject
 
-
-newObj :: String -> IO (JSPtr p)
-newObj = _newObj . toJS
+foreign import prim "primEq"
+   _primEq :: JSAny a -> JSAny b -> Bool
 
 foreign import prim "primMkObj"
-  _newObj :: JSString -> IO (JSPtr p)
-
-mkCtor :: String -> IO (JSFunPtr a)
-mkCtor = _mkCtor . toJS
+  _primNewObj :: JSString -> IO JSObject
 
 foreign import prim "primMkCtor"
-  _mkCtor :: JSString -> IO (JSFunPtr a)
-
-getCtor :: String -> IO (JSFunPtr a)
-getCtor s1 = _getCtor (toJS s1)
+  _primMkCtor :: JSString -> IO (JSFunction_ a)
 
 foreign import prim "primGetCtor"
-  _getCtor :: JSString -> IO (JSFunPtr a)
-
-setCtor :: String -> JSFunPtr a -> IO ()
-setCtor s1 fp = _setCtor (toJS s1) fp
+  _primGetCtor :: JSString -> IO (JSFunction_ a)
 
 foreign import prim "primSetCtor"
-  _setCtor :: JSString -> JSFunPtr a -> IO ()
-
-getAttr :: String -> JSPtr p -> IO a
-getAttr s p = _getAttr (toJS s) p
+  _primSetCtor :: JSString -> JSFunction_ a -> IO ()
 
 foreign import prim "primGetAttr"
-  _getAttr :: JSString -> JSPtr p -> IO a
-
-setAttr :: String -> a -> JSPtr p -> IO (JSPtr p)
-setAttr s a p = _setAttr (toJS s) a p
-
-setAttr_ :: String -> a -> JSPtr p -> IO ()
-setAttr_ s a p = setAttr s a p >> return ()
+  _primGetAttr :: JSString -> JSObject_ p -> IO a
 
 foreign import prim "primSetAttr"
-  _setAttr :: JSString -> a -> JSPtr p -> IO (JSPtr p)
-
-pureSetAttr :: String -> a -> JSPtr p -> JSPtr p
-pureSetAttr s a p = _pureSetAttr (toJS s) a p
+  _primSetAttr :: JSString -> a -> JSObject_ p -> IO (JSObject_ p)
 
 foreign import prim "primPureSetAttr"
-  _pureSetAttr :: JSString -> a -> JSPtr p -> JSPtr p
-
-modAttr :: String -> (a -> b) -> JSPtr p -> IO (JSPtr p)
-modAttr s f p = _modAttr (toJS s) f p
-
-modAttr_ :: String -> (a -> b) -> JSPtr p -> IO ()
-modAttr_ s f p = modAttr s f p >> return ()
+  _primPureSetAttr :: JSString -> a -> JSObject_ p -> JSObject_ p
 
 foreign import prim "primModAttr"
-  _modAttr :: JSString -> (a -> b) -> JSPtr p -> IO (JSPtr p)
-
-pureModAttr :: String -> (a -> b) -> JSPtr p -> JSPtr p
-pureModAttr s f p = _pureModAttr (toJS s) f p
+  _primModAttr :: JSString -> (a -> b) -> JSObject_ p -> IO (JSObject_ p)
 
 foreign import prim "primPureModAttr"
-  _pureModAttr :: JSString -> (a -> b) -> JSPtr p -> JSPtr p
-
-getProtoAttr :: String -> String -> IO a
-getProtoAttr x y = _getProtoAttr (toJS x) (toJS y)
+  _primPureModAttr :: JSString -> (a -> b) -> JSObject_ p -> JSObject_ p
 
 foreign import prim "primGetProtoAttr"
-  _getProtoAttr :: JSString -> JSString -> IO a
-
-
-setProtoAttr :: String -> a -> String -> IO ()
-setProtoAttr x a y = _setProtoAttr (toJS x) a (toJS y)
+  _primGetProtoAttr :: JSString -> JSString -> IO a
 
 foreign import prim "primSetProtoAttr"
-  _setProtoAttr :: JSString -> a -> JSString -> IO ()
-
-
-modProtoAttr :: String -> (a -> b) -> String -> IO ()
-modProtoAttr x f y = _modProtoAttr (toJS x) f (toJS y)
+  _primSetProtoAttr :: JSString -> a -> JSString -> IO ()
 
 foreign import prim "primModProtoAttr"
-  _modProtoAttr :: JSString -> (a -> b) -> JSString -> IO ()
+  _primModProtoAttr :: JSString -> (a -> b) -> JSString -> IO ()
 
 foreign import prim "primClone"
-  primClone :: JSPtr a -> JSPtr a
+  _primClone :: JSObject_ a -> JSObject_ a
 
 foreign import prim "primToPlainObj"
-  primToPlainObj :: JSPtr a -> JSPtr b
+  _primToPlainObj :: JSObject_ a -> JSObject_ b
 
-foreign import js "{}"
-  mkObj :: a -> IO (JSPtr b)
+foreign import prim "primInstanceOf"
+  _primInstanceOf :: a -> b -> Bool
 
+foreign import prim "primIsNull"
+  _primIsNull :: a -> Bool
+
+foreign import prim "primIsUndefined"
+  _primIsUndefined :: a -> Bool
+
+foreign import prim "primIsBool"
+  _primIsBool :: a -> Bool
+
+foreign import prim "primIsString"
+  _primIsString :: a -> Bool
+
+foreign import prim "primIsChar"
+  _primIsChar :: a -> Bool
+
+foreign import prim "primIsNumber"
+  _primIsNumber :: a -> Bool
+
+foreign import prim "primIsDouble"
+  _primIsDouble :: a -> Bool
+
+foreign import prim "primIsObject"
+  _primIsObject :: a -> Bool
+
+foreign import prim "primIsFunction"
+  _primIsFunction :: a -> Bool

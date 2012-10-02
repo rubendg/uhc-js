@@ -1,14 +1,14 @@
 module Language.UHC.JS.JQuery.JQuery where
 
-import Language.UHC.JS.ECMA.Array (JSArray)
+import Language.UHC.JS.ECMA.Array
 import Language.UHC.JS.ECMA.String
 import Language.UHC.JS.Primitives
 import Language.UHC.JS.Types
-
-import Language.UHC.JS.Assorted (alert)
+import Language.UHC.JS.Marshal
+import Language.UHC.JS.Prelude  
 
 data JQueryPtr
-type JQuery = JSPtr JQueryPtr
+type JQuery = JSObject_ JQueryPtr
 type Selector = String
 -------------------------------------------------------------------------------
 -- jQuery Core
@@ -16,17 +16,17 @@ type Selector = String
 jQuery :: String -> IO JQuery
 jQuery = _jQuery . toJS
 
-jQuery' :: String -> JSPtr a -> IO JQuery
+jQuery' :: String -> JSAny a -> IO JQuery
 jQuery' s j = _jQuery' (toJS s) j
 
 foreign import js "jQuery(%*)"
   _jQuery :: JSString -> IO JQuery
 
 foreign import js "jQuery(%*)"
-  _jQuery' :: JSString -> JSPtr a -> IO JQuery
+  _jQuery' :: JSString -> JSAny a -> IO JQuery
 
 foreign import js "jQuery(%*)"
-  jQueryObj :: JSPtr a -> IO JQuery
+  jQueryObj :: JSAny a -> IO JQuery
 
 foreign import js "jQuery()"
   jQuery_ :: IO JQuery
@@ -45,13 +45,13 @@ foreign import js "jQuery.sub()"
   sub :: IO JQuery
 
 foreign import js "jQuery.when(%*)"
-  when :: JSPtr a -> IO ()
+  when :: JSAny a -> IO ()
 
 foreign import js "jQuery.when(%*)"
-  when' :: JSPtr a -> JSPtr a -> IO ()
+  when' :: JSAny a -> JSAny a -> IO ()
 
 foreign import js "jQuery.when(%*)"
-  when'' :: JSPtr a -> JSPtr a -> JSPtr a -> IO ()
+  when'' :: JSAny a -> JSAny a -> JSAny a -> IO ()
 
 -------------------------------------------------------------------------------
 -- Iteration
@@ -60,14 +60,14 @@ foreign import js "jQuery.makeArray(%1)"
   jQueryToArray :: JQuery -> IO (JSArray a)
 
 foreign import js "%1.each(%2)"
-  each :: JQuery -> JSFunPtr (Int -> JSPtr a -> IO ()) -> IO ()
+  each :: JQuery -> JSFunction_ (Int -> JSAny a -> IO ()) -> IO ()
 
 foreign import js "jQuery.each(%*)"
-  each' ::  b -> JSFunPtr (Int -> JSPtr a -> IO ()) -> IO ()
+  each' ::  b -> JSFunction_ (Int -> JSAny a -> IO ()) -> IO ()
   
 
 foreign import js "wrapper"
-  mkEachIterator :: (Int -> JSPtr a -> IO ()) -> IO (JSFunPtr (Int -> JSPtr a -> IO ()))
+  mkEachIterator :: (Int -> JSAny a -> IO ()) -> IO (JSFunction_ (Int -> JSAny a -> IO ()))
   
 -------------------------------------------------------------------------------
 -- DOM
@@ -82,7 +82,7 @@ foreign import js "%1.find(%2)"
   findObject :: JQuery -> JQuery -> IO JQuery
 
 valString :: JQuery -> IO String
-valString jq = valJSString jq >>= return . fromJS
+valString jq = liftFromJS_ (valJSString jq)
 
 foreign import js "%1.val()"  
   valJSString :: JQuery -> IO JSString
@@ -98,7 +98,7 @@ foreign import js "%1.val(%2)"
 -- Manipulation
 
 getHTML :: JQuery -> IO String
-getHTML = fromJSM . _getHTML
+getHTML = liftFromJS_ . _getHTML
 
 foreign import js "%1.html()"
   _getHTML :: JQuery -> IO JSString
@@ -189,7 +189,7 @@ foreign import js "%1.blur()"
 -- Events
 
 data JUIPtr
-type JUI = JSPtr JUIPtr
+type JUI = JSObject_ JUIPtr
 
 -- ToDo:  Probably the second arguments of the ThisEventHandlers and the first
 --        of the EventHandlers should not be a general JQuery object but an
@@ -204,10 +204,10 @@ type UIThisEventHandler  = JQuery -> JQuery -> JUI -> JEventResult
 
 type JEventResult        = IO Bool
 
-type JEventHandler       = JSFunPtr EventHandler
-type JThisEventHandler   = JSFunPtr ThisEventHandler
-type JUIEventHandler     = JSFunPtr UIEventHandler
-type JUIThisEventHandler = JSFunPtr UIThisEventHandler
+type JEventHandler       = JSFunction_ EventHandler
+type JThisEventHandler   = JSFunction_ ThisEventHandler
+type JUIEventHandler     = JSFunction_ UIEventHandler
+type JUIThisEventHandler = JSFunction_ UIThisEventHandler
 
 data JEventType          = Blur | Change | Click | DoubleClick | Focus | FocusIn
                          | FocusOut | Hover | KeyDown  | KeyPress | KeyUp
@@ -274,11 +274,11 @@ keypress :: JQuery -> JEventHandler -> IO ()
 keypress = undefined
 
 
-onDocumentReady :: JSFunPtr (IO ()) -> IO ()
+onDocumentReady :: JSFunction_ (IO ()) -> IO ()
 onDocumentReady f = _ready f
 
 foreign import js "$('document').ready(%1)"
-  _ready :: JSFunPtr (IO ()) -> IO ()
+  _ready :: JSFunction_ (IO ()) -> IO ()
   
 foreign import js "wrapper"
   mkJEventHandler :: EventHandler -> IO JEventHandler

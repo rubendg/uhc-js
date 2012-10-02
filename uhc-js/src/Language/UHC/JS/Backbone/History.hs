@@ -7,4 +7,4 @@ foreign import js "Backbone.history.start()"
   start :: IO ()
 
 foreign import js "Backbone.history.start(%*)"
-  start' :: AnonObj -> IO ()
+  start' :: JSObject_ a -> IO ()
