@@ -45,6 +45,11 @@ boolToJSBool False = _false
 
 -- JSString
 
+fromJS_ = fromJust. fromJS
+
+instance Show JSString where
+  show = fromJS_
+
 instance ToJS String JSString where
    toJS = stringToJSString
 

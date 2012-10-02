@@ -6,16 +6,16 @@ import Language.UHC.JS.Primitives
 import Language.UHC.JS.ECMA.String  
 
 foreign import js "wrapper"
-  wrapFunc :: IO () -> IO (JSFunction_ (IO ()))
+  wrapFunc :: IO a -> IO (JSFunction_ (IO a))
 
 foreign import js "wrapper"
-  wrapFunc1 :: (a -> IO ()) -> IO (JSFunction_ (a -> IO ()))
+  wrapFunc1 :: (a -> IO b) -> IO (JSFunction_ (a -> IO b))
 
 foreign import js "dynamic"
-   unwrapFunc :: JSFunction_ (IO ()) -> IO (IO ())
+   unwrapFunc :: JSFunction_ (IO a) -> IO (IO a)
 
 foreign import js "dynamic"
-   unwrapFunc1 :: JSFunction_ (a -> IO ()) -> IO (a -> IO ())
+   unwrapFunc1 :: JSFunction_ (a -> IO b) -> IO (a -> IO b)
 
 newObj :: String -> IO JSObject
 newObj = _primNewObj . toJS

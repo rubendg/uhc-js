@@ -2,19 +2,19 @@ module Language.UHC.JS.JQuery.Ajax (AjaxOptions(..), JSAjaxOptions(..), AjaxCall
 
 import Language.UHC.JS.ECMA.String
 import Language.UHC.JS.Types
-
-import Language.UHC.JS.Primitives  
+import Language.UHC.JS.Prelude
+import Language.UHC.JS.Marshal
 
 import Data.List
 
 data JQXHRPtr
-type JQXHR = JSPtr JQXHRPtr
+type JQXHR = JSObject_ JQXHRPtr
 
 -- These two types themselves do not contain the constraint JS r as these types
 -- are also used in the wrapper functions. The FFI does not support classes so
 -- hence their absence here.
 type AjaxCallback   r = r -> String -> JQXHR -> IO()
-type JSAjaxCallback r = JSFunPtr (AjaxCallback r)
+type JSAjaxCallback r = JSFunction_ (AjaxCallback r)
 
 data AjaxRequestType = GET | HEAD | POST | PUT | DELETE
   deriving Show
@@ -57,7 +57,7 @@ toJSOptions options = let url'         = toJS (ao_url         options)
 -- | Wrapper function that processes the needed arguments before passing it 
 --   to |cont| that is responsible for doing the request. One can also partially
 --   apply this to get insert a debugger for requests.
-ajaxBackend :: (JS r, JS v) => (JSPtr a -> IO ()) -> AjaxOptions a -> v -> AjaxCallback r -> AjaxCallback r -> IO ()
+ajaxBackend :: (JSObject_ a -> IO ()) -> AjaxOptions a -> v -> AjaxCallback r -> AjaxCallback r -> IO ()
 ajaxBackend cont options valdata onSuccess onFailure = 
   do let jsOptions = toJSOptions options
      onSuccess' <- mkJSAjaxCallback onSuccess
@@ -70,7 +70,7 @@ ajaxBackend cont options valdata onSuccess onFailure =
      cont o
 
 -- | Using the standard jQuery ajax function for executing the jQuery funcitons.
-ajax :: (JS r, JS v) => AjaxOptions a -> v -> AjaxCallback r -> AjaxCallback r -> IO ()
+ajax :: AjaxOptions a -> v -> AjaxCallback r -> AjaxCallback r -> IO ()
 ajax = ajaxBackend _ajax
                   
                   
@@ -79,7 +79,7 @@ foreign import js "wrapper"
 
 
 foreign import js "$.ajax(%1)"
-  _ajax :: JSPtr a -> IO ()
+  _ajax :: JSAny a -> IO ()
   
 noop :: AjaxCallback a
 noop _ _ _ = return ()  
