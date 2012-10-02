@@ -10,7 +10,8 @@ type Node = Node_ ()
 data Element_ a
 type Element a = Node_ (Element_ a)
 
-data HTMLDocument
+data CHTMLDocument
+type HTMLDocument = JSObject_ CHTMLDocument
 
 data Event_ a 
 type Event = JSObject_ (Event_ ())

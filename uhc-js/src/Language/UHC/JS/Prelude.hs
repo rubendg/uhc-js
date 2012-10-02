@@ -68,11 +68,5 @@ modProtoAttr x f y = _primModProtoAttr (toJS x) f (toJS y)
 foreign import js "{}"
   mkObj :: a -> IO (JSObject_ b)
 
-alert :: String -> IO ()
-alert = _alert . toJS
-
-foreign import js "alert(%*)"
-  _alert :: JSString -> IO ()
-
 foreign import js "console.log(%*)"
   _trace :: a -> IO ()
