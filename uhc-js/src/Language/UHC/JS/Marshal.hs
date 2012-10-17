@@ -2,6 +2,8 @@ module Language.UHC.JS.Marshal where
 
 import Language.UHC.JS.Primitives
 import Language.UHC.JS.Types
+import UHC.BoxArray
+import UHC.Array
 import Data.Maybe
 import Control.Monad
 
@@ -67,6 +69,33 @@ jsStringToString = packedStringToString . unsafeCoerce
 
 foreign import prim "primStringToPackedString"
   stringToJSString :: String -> JSString
+
+instance ToJS [a] (JSArray a) where
+  toJS = listToStrictJSArray
+
+listToJSArray :: [a] -> JSArray a
+listToJSArray [] = error "Cannot convert empty list"
+listToJSArray xs = snd $ foldr f (0, primNewArray (length xs) (head xs)) xs
+  where f x (n, arr) = (n+1, seq (primWriteArray arr n x) arr)
+
+listToStrictJSArray :: [a] -> JSArray a
+listToStrictJSArray [] = error "Cannot convert empty list"
+listToStrictJSArray xs = snd $ foldr f (0, primNewArray (length xs) (head xs)) xs
+  where f x (n, arr) = (n+1, seq (primStrictWriteArray arr n x) arr)
+
+lengthJSArray :: JSArray a -> Int
+lengthJSArray = _primPureGetAttr (toJS "length" :: JSString)
+
+--indexJSArray :: JSArray x -> Int -> x
+--indexJSArray = indexArray
+
+--{- instance FromJS (JSArray x) where-}
+--  {- fromJS = jsArrayToArray-}
+
+jsArrayToArray :: JSArray x -> Array Int x
+jsArrayToArray a
+  = Array 0 (l-1) l (unsafeCoerce a)
+  where l = lengthJSArray a
 
 str :: String -> JSString
 str = toJS

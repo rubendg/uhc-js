@@ -23,6 +23,9 @@ foreign import prim "primSetCtor"
 foreign import prim "primGetAttr"
   _primGetAttr :: JSString -> JSObject_ p -> IO a
 
+foreign import prim "primPureGetAttr"
+  _primPureGetAttr :: JSString -> JSObject_ p -> a
+
 foreign import prim "primSetAttr"
   _primSetAttr :: JSString -> a -> JSObject_ p -> IO (JSObject_ p)
 
@@ -79,3 +82,12 @@ foreign import prim "primIsObject"
 
 foreign import prim "primIsFunction"
   _primIsFunction :: a -> Bool
+
+foreign import prim
+  primNewArray :: Int -> x -> JSArray x
+
+foreign import prim "primWriteArray"
+  primWriteArray :: JSArray x -> Int -> x -> ()
+
+foreign import prim "primStrictWriteArray"
+  primStrictWriteArray :: JSArray x -> Int -> x -> ()

@@ -1,13 +1,9 @@
 module Language.UHC.JS.ECMA.Array where
 
+import Language.UHC.JS.Types
 --import UHC.Array
 --import UHC.Base as B
 --import UHC.BoxArray
-
---type JSArray x = BoxArray x
-
---instance ToJS [a] (JSArray a) where
---  toJS = listToStrictJSArray
 
 --foreign import js "%1.length"
 --  lengthJSArray :: JSArray x -> Int
@@ -20,8 +16,8 @@ module Language.UHC.JS.ECMA.Array where
 ---- number of arguments? How do we deal with non-arrays being passed? Do we need
 ---- to specified a ToJS constraint on those? Or can we let JS figure out what to
 ---- do?
---foreign import js "%1.concat(%*)"
---  concat :: JSArray x -> JSArray x -> JSArray x
+foreign import js "%1.concat(%*)"
+  concat :: JSArray x -> JSArray x -> JSArray x
 
 --foreign import js "%1.concat(%*)"
 --  concat2 :: JSArray x -> JSArray x -> JSArray x -> JSArray x
@@ -176,34 +172,4 @@ module Language.UHC.JS.ECMA.Array where
 
 --foreign import js "%1.reduceRight(%*)"
 --  reduceRight' :: JSArray x -> (x -> x -> Int -> JSArray x -> y) -> y -> y
-
---foreign import prim
---  primNewArray :: Int -> x -> BoxArray x
-
---foreign import prim "primWriteArray"
---  primWriteArray :: BoxArray x -> Int -> x -> ()
-
---foreign import prim "primStrictWriteArray"
---  primStrictWriteArray :: BoxArray x -> Int -> x -> ()
-
---listToJSArray :: [a] -> JSArray a
---listToJSArray [] = error "Cannot convert empty list"
---listToJSArray xs = snd $ foldr f (0, primNewArray (B.length xs) (head xs)) xs
---  where f x (n, arr) = (n+1, seq (primWriteArray arr n x) arr)
-
---listToStrictJSArray :: [a] -> JSArray a
---listToStrictJSArray [] = error "Cannot convert empty list"
---listToStrictJSArray xs = snd $ foldr f (0, primNewArray (B.length xs) (head xs)) xs
---  where f x (n, arr) = (n+1, seq (primStrictWriteArray arr n x) arr)
-
---indexJSArray :: JSArray x -> Int -> x
---indexJSArray = indexArray
-
---{- instance FromJS (JSArray x) where-}
---  {- fromJS = jsArrayToArray-}
-
---jsArrayToArray :: JSArray x -> Array Int x
---jsArrayToArray a
---  = Array 0 (l-1) l a
---  where l = lengthJSArray a
 
